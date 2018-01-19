@@ -70,7 +70,7 @@ public class DbInterface {
 	  Connection connection = connector();
 
 	  Boolean alarm = null;
-	  String query = "SELECT `alarm` FROM `boxes` WHERE `id_box`= "+id;
+	  String query = "SELECT `alarm` FROM `boxes` WHERE `id_box`= "+id+" ORDER BY id DESC LIMIT 1";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -103,7 +103,7 @@ public class DbInterface {
 	  Connection connection = connector();
 
 	  Boolean display = null;
-	  String query = "SELECT `display` FROM `boxes` WHERE `id_box`= "+id;
+	  String query = "SELECT `display` FROM `boxes` WHERE `id_box`= "+id+"ORDER BY id DESC LIMIT 1";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -136,7 +136,7 @@ public class DbInterface {
 	  Connection connection = connector();
 
 	  Float humidity = null;
-	  String query = "SELECT `humidity` FROM `boxes` WHERE `id_box`= "+id;
+	  String query = "SELECT `humidity` FROM `boxes` WHERE `id_box`= "+id+" ORDER BY id DESC LIMIT 1";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -169,7 +169,7 @@ public class DbInterface {
 	  Connection connection = connector();
 
 	  Integer light = null;
-	  String query = "SELECT `light` FROM `boxes` WHERE `id_box`= "+id;
+	  String query = "SELECT `light` FROM `boxes` WHERE `id_box`= "+id+" ORDER BY id DESC LIMIT 1";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -202,7 +202,7 @@ public class DbInterface {
 	  Connection connection = connector();
 
 	  Float temp = null;
-	  String query = "SELECT `temp` FROM `boxes` WHERE `id_box`= "+id;
+	  String query = "SELECT `temp` FROM `boxes` WHERE `id_box`= "+id+" ORDER BY id DESC LIMIT 1";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -235,7 +235,7 @@ public class DbInterface {
 	  Connection connection = connector();
 
 	  Boolean windler = null;
-	  String query = "SELECT `windler` FROM `boxes` WHERE `id_box`= "+id;
+	  String query = "SELECT `windler` FROM `boxes` WHERE `id_box`= "+id+" ORDER BY id DESC LIMIT 1";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -268,7 +268,7 @@ public class DbInterface {
 	  Connection connection = connector();
 
 	  String type = null;
-	  String query = "SELECT `type` FROM `boxes` WHERE `id_box`= "+id;
+	  String query = "SELECT `type` FROM `boxes` WHERE `id_box`= "+id+" ORDER BY id DESC LIMIT 1";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -301,7 +301,7 @@ public class DbInterface {
 	  Connection connection = connector();
 
 	  Integer number = null;
-	  String query = "SELECT `animalsN` FROM `boxes` WHERE `id_box`= "+id;
+	  String query = "SELECT `animalsN` FROM `boxes` WHERE `id_box`= "+id+" ORDER BY id DESC LIMIT 1";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -334,7 +334,7 @@ public class DbInterface {
 	  Connection connection = connector();
 
 	  Double number = null;
-	  String query = "SELECT `foodQnt` FROM `boxes` WHERE `id_box`= "+id;
+	  String query = "SELECT `foodQnt` FROM `boxes` WHERE `id_box`= "+id+" ORDER BY id DESC LIMIT 1";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -367,7 +367,7 @@ public class DbInterface {
 	  Connection connection = connector();
 
 	  Double number = null;
-	  String query = "SELECT `waterQnt` FROM `boxes` WHERE `id_box`= "+id;
+	  String query = "SELECT `waterQnt` FROM `boxes` WHERE `id_box`= "+id+" ORDER BY id DESC LIMIT 1";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -437,7 +437,7 @@ public class DbInterface {
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("UPDATE `boxes` SET `alarm` = "+value+"  WHERE `id_box` ="+id); 
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`alarm`, `id_box`) values('"+value+"', '"+id+"')");
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -458,7 +458,7 @@ public class DbInterface {
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("UPDATE `boxes` SET `display` = "+value+"  WHERE `id_box` ="+id); 
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`display`, `id_box`) values('"+value+"', '"+id+"')"); 
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -478,7 +478,7 @@ public class DbInterface {
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("UPDATE `boxes` SET `humidity` = "+value+"  WHERE `id_box` ="+id); 
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`humidity`, `id_box`) values('"+value+"', '"+id+"')"); 
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -518,7 +518,7 @@ public class DbInterface {
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("UPDATE `boxes` SET `temp` = "+value+"  WHERE `id_box` ="+id); 
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`temp`, `id_box`) values('"+value+"', '"+id+"')"); 
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -538,7 +538,7 @@ public class DbInterface {
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("UPDATE `boxes` SET `windler` = "+value+"  WHERE `id_box` ="+id); 
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`windler`, `id_box`) values('"+value+"', '"+id+"')"); 
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -558,7 +558,7 @@ public class DbInterface {
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("UPDATE `boxes` SET `type` = "+value+"  WHERE `id_box` ="+id); 
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`type`, `id_box`) values('"+value+"', '"+id+"')"); 
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -578,7 +578,7 @@ public class DbInterface {
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("UPDATE `boxes` SET `animalsN` = "+value+"  WHERE `id_box` ="+id); 
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`animalsN`, `id_box`) values('"+value+"', '"+id+"')"); 
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -598,7 +598,7 @@ public class DbInterface {
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("UPDATE `boxes` SET `foodQnt` = "+value+"  WHERE `id_box` ="+id); 
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`foodQnt`, `id_box`) values('"+value+"', '"+id+"')"); 
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -618,7 +618,7 @@ public class DbInterface {
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("UPDATE `boxes` SET `waterQnt` = "+value+"  WHERE `id_box` ="+id); 
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`waterQnt`, `id_box`) values('"+value+"', '"+id+"')"); 	
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
