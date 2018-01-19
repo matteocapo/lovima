@@ -1,14 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.10
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Creato il: Gen 19, 2018 alle 17:51
--- Versione del server: 5.5.42
--- Versione PHP: 5.6.10
+-- Host: 127.0.0.1
+-- Creato il: Gen 19, 2018 alle 18:29
+-- Versione del server: 10.1.21-MariaDB
+-- Versione PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `se4asdb`
@@ -21,16 +27,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `active_boxes` (
-  `id_box` varchar(11) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dump dei dati per la tabella `active_boxes`
---
-
-INSERT INTO `active_boxes` (`id_box`) VALUES
-('1'),
-('2');
+  `id` int(11) NOT NULL,
+  `id_box` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -57,9 +56,10 @@ CREATE TABLE `animals` (
 --
 
 CREATE TABLE `boxes` (
+  `id` int(11) NOT NULL,
   `id_box` varchar(11) DEFAULT '0',
   `idAnimals` varchar(11) DEFAULT '0',
-  `dateTime` date DEFAULT NULL,
+  `dateTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `animalsN` int(11) DEFAULT '0',
   `temp` float DEFAULT '0',
   `foodQnt` double DEFAULT '0',
@@ -76,9 +76,11 @@ CREATE TABLE `boxes` (
 -- Dump dei dati per la tabella `boxes`
 --
 
-INSERT INTO `boxes` (`id_box`, `idAnimals`, `dateTime`, `animalsN`, `temp`, `foodQnt`, `waterQnt`, `light`, `humidity`, `alarm`, `display`, `windler`, `type`) VALUES
-('1', '0', NULL, 0, 56.7, 0, 0, 0, 0, 0, 0, 0, '0'),
-('2', '0', NULL, 0, 20.6, 0, 0, 0, 0, 0, 0, 0, '0');
+INSERT INTO `boxes` (`id`, `id_box`, `idAnimals`, `dateTime`, `animalsN`, `temp`, `foodQnt`, `waterQnt`, `light`, `humidity`, `alarm`, `display`, `windler`, `type`) VALUES
+(1, '1', '0', NULL, 0, 25, 0, 0, 0, 0, 0, 0, 0, 'T'),
+(2, '2', '0', NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'T'),
+(3, '1', '0', NULL, 0, 0, 0, 0, 233, 0, 0, 0, 0, '0'),
+(4, '1', '0', '2018-01-19 17:25:38', 0, 0, 0, 0, 233, 0, 0, 0, 0, '0');
 
 --
 -- Indici per le tabelle scaricate
@@ -88,8 +90,7 @@ INSERT INTO `boxes` (`id_box`, `idAnimals`, `dateTime`, `animalsN`, `temp`, `foo
 -- Indici per le tabelle `active_boxes`
 --
 ALTER TABLE `active_boxes`
-  ADD PRIMARY KEY (`id_box`),
-  ADD KEY `id_boxes` (`id_box`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indici per le tabelle `animals`
@@ -101,6 +102,7 @@ ALTER TABLE `animals`
 -- Indici per le tabelle `boxes`
 --
 ALTER TABLE `boxes`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `id_box` (`id_box`);
 
 --
@@ -108,7 +110,20 @@ ALTER TABLE `boxes`
 --
 
 --
+-- AUTO_INCREMENT per la tabella `active_boxes`
+--
+ALTER TABLE `active_boxes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT per la tabella `animals`
 --
 ALTER TABLE `animals`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT per la tabella `boxes`
+--
+ALTER TABLE `boxes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

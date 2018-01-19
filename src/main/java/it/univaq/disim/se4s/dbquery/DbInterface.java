@@ -29,8 +29,13 @@ public class DbInterface {
 			.getConnection("jdbc:mysql://localhost:3306/se4asdb","root", "root");
 			} 
 		catch (SQLException e) {
-			System.out.println("Connessione non riuscita");
-			e.printStackTrace();
+			try {
+				connection = DriverManager
+				.getConnection("jdbc:mysql://localhost:3306/se4asdb","root", "");
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				System.out.println("Connessione non riuscita");				
+			}
 		}
 
 		if (connection != null) {
@@ -493,7 +498,7 @@ public class DbInterface {
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("UPDATE `boxes` SET `light` = "+value+"  WHERE `id_box` ="+id); 
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`light`, `id_box`) values('"+value+"', '"+id+"')"); 
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -637,8 +642,8 @@ public class DbInterface {
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("INSERT INTO `se4asdb`.`active_boxes` (`id_box`, `type`) VALUES ('"+id+"', '"+type+"')");
-			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes` (`id_box`) VALUES ('"+id+"')");
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`active_boxes` (`id_box`) VALUES ('"+id+"')");
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes` (`id_box`, `type`) VALUES ('"+id+"', '"+type+"')");
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
