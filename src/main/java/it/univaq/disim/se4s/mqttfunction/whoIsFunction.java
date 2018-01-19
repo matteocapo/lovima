@@ -1,12 +1,17 @@
 package it.univaq.disim.se4s.mqttfunction;
 
 
+import java.sql.SQLException;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttTopic;
 
 import it.univaq.disim.se4s.callbackfunction.WhoIsMqttCallBack;
+import it.univaq.disim.se4s.dbquery.DbInterface;
 
 public class whoIsFunction{
 	
@@ -33,13 +38,42 @@ public class whoIsFunction{
 		return topic1;
 	}
 	
-	public void whoIs() throws MqttException {
-		MqttClient client = connection();
+	public static void whoIs() throws MqttException {
+		final MqttClient client = connection();
 	    String     message  ="whoIs";
 	    MqttTopic topic = addTopic(client);
 		MqttTopic topicout = addTopicout(client);
-		client.setCallback(new WhoIsMqttCallBack());
-	    MqttMessage     publication = new MqttMessage(message.getBytes());
+		
+		final WhoIsMqttCallBack mqttCall = new WhoIsMqttCallBack(client);
+		client.setCallback(mqttCall);
+
+		final Timer timer = new Timer();
+		timer.schedule(new TimerTask() {
+			  @Override
+			  public void run() {
+			    if(!mqttCall.isMessageArrived) {
+			    	try {
+						client.setCallback(null);
+						client.disconnect();
+						client.close();
+
+						try {
+							DbInterface.deleteOnlineBox(DbInterface.getOnlibeBoxes().get(0));
+						} catch (Exception e) {
+
+						timer.cancel();
+						}
+					} catch (MqttException e) {
+						
+					}
+			    }
+			  }
+			}, 5*1000);
+		
+	    
+		MqttMessage publication = new MqttMessage(message.getBytes());
 	    topic.publish(publication);
+	    
+
 	}
 }

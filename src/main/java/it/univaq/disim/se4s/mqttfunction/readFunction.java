@@ -45,7 +45,7 @@ public class readFunction{
 	    }
 	
 	//funzione per leggere l'umidità
-	public void readHumidity(String id) throws MqttException {
+	public static void readHumidity(String id) throws MqttException {
 		MqttClient client = connection();
 		MqttTopic topic = addTopicin(client);
 		MqttTopic topicout = addTopicout(client);
@@ -56,7 +56,7 @@ public class readFunction{
 	}
 	
 	//funzione leggere la quantità di luce
-	public void readLight(String id) throws MqttException {
+	public static void readLight(String id) throws MqttException {
 		MqttClient client = connection();
 		MqttTopic topic = addTopicin(client);
 		MqttTopic topicout = addTopicout(client);
@@ -68,7 +68,7 @@ public class readFunction{
 	
 	
 	//funzione leggere se sono accese le ventole
-	public void readWindler(String id) throws MqttException {
+	public static void readWindler(String id) throws MqttException {
 		MqttClient client = connection();
 		MqttTopic topic = addTopicin(client);
 		MqttTopic topicout = addTopicout(client);
@@ -79,7 +79,7 @@ public class readFunction{
 	}
 		
 	//funzione che informa se la la teca è polarizzata o meno 
-	public void readDisplay(String id) throws MqttException {
+	public static void readDisplay(String id) throws MqttException {
 		MqttClient client = connection();
 		MqttTopic topic = addTopicin(client);
 		MqttTopic topicout = addTopicout(client);
@@ -90,7 +90,7 @@ public class readFunction{
 	}
 	
 	//funzione che informa se l'allarme è attivo o no
-	public void readAlarm(String id) throws MqttException {
+	public static void readAlarm(String id) throws MqttException {
 		MqttClient client = connection();
 		MqttTopic topic = addTopicin(client);
 		MqttTopic topicout = addTopicout(client);

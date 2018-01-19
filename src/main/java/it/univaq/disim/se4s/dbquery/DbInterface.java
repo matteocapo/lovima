@@ -637,13 +637,13 @@ public class DbInterface {
    * essa aggiunge una riga alla tabella active_boxes e una a boxes,
    * successivamente la tupla contenuta in boxes deve essere popolata di tutti gli altri paramentri
    */
-  public static void setOnlineBoxes(String id, String type) throws SQLException {
+  public static void setOnlineBoxes(String id, String type, String idAnimal) throws SQLException {
 	  Connection connection = connector();
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
 			  stmt.executeUpdate("INSERT INTO `se4asdb`.`active_boxes` (`id_box`) VALUES ('"+id+"')");
-			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes` (`id_box`, `type`) VALUES ('"+id+"', '"+type+"')");
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes` (`id_box`, `type`, `idAnimals`) VALUES ('"+id+"', '"+type+"', '"+idAnimal+"')");
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -664,7 +664,6 @@ public class DbInterface {
 		  Statement stmt = connection.createStatement();
 		  try {
 			  stmt.executeUpdate("DELETE FROM `se4asdb`.`active_boxes` WHERE `active_boxes`.`id_box` = '"+id+"'");
-			  stmt.executeUpdate("DELETE FROM `se4asdb`.`boxes` WHERE `boxes`.`id_box` = '"+id+"'");
 
 			  System.out.println("query riuscita");
 		  }
