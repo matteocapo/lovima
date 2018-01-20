@@ -434,10 +434,18 @@ public class DbInterface {
   
   public static void setAlarm(String id, Boolean value) throws SQLException {
 	  Connection connection = connector();
+	  
+	  int val;
+	  if(value) {
+		   val = 1;
+	  } else {
+		   val = 0;
+	  }
+	  
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`alarm`, `id_box`) values('"+value+"', '"+id+"')");
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`alarm`, `id_box`) values('"+val+"', '"+id+"')");
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -455,10 +463,18 @@ public class DbInterface {
   
   public static void setDisplay(String id, Boolean value) throws SQLException {
 	  Connection connection = connector();
+	  
+	  int val;
+	  if(value) {
+		   val = 1;
+	  } else {
+		   val = 0;
+	  }
+	  
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`display`, `id_box`) values('"+value+"', '"+id+"')"); 
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`display`, `id_box`) values('"+val+"', '"+id+"')"); 
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -535,10 +551,18 @@ public class DbInterface {
   
   public static void setWindler(String id, Boolean value) throws SQLException {
 	  Connection connection = connector();
+	  
+	  int val;
+	  if(value) {
+		   val = 1;
+	  } else {
+		   val = 0;
+	  }
+	  
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`windler`, `id_box`) values('"+value+"', '"+id+"')"); 
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`windler`, `id_box`) values('"+val+"', '"+id+"')"); 
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {

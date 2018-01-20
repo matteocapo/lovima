@@ -38,7 +38,10 @@ public class readFunction{
 		MqttClient client = connection();
 		MqttTopic topic = addTopicin(client);
 		MqttTopic topicout = addTopicout(client);
-		client.setCallback(new ReadThemperatureMqttCallBack());
+		
+		ReadThemperatureMqttCallBack mqttCall = new ReadThemperatureMqttCallBack(client);
+		client.setCallback(mqttCall);
+		
 		String     message  = id+" readThemperature";
 	    MqttMessage     publication = new MqttMessage(message.getBytes());
 	    topic.publish(publication);
@@ -49,7 +52,10 @@ public class readFunction{
 		MqttClient client = connection();
 		MqttTopic topic = addTopicin(client);
 		MqttTopic topicout = addTopicout(client);
-		client.setCallback(new ReadHumidityMqttCallBack());
+		
+		ReadHumidityMqttCallBack mqttCall = new ReadHumidityMqttCallBack(client);
+		client.setCallback(mqttCall);
+		
 		String     message  = id+" readHumidity";
 	    MqttMessage     publication = new MqttMessage(message.getBytes());
 	    topic.publish(publication);
@@ -60,7 +66,10 @@ public class readFunction{
 		MqttClient client = connection();
 		MqttTopic topic = addTopicin(client);
 		MqttTopic topicout = addTopicout(client);
-		client.setCallback(new ReadLightMqttCallBack());
+		
+		ReadLightMqttCallBack mqttCall = new ReadLightMqttCallBack(client);
+		client.setCallback(mqttCall);
+		
 		String     message  = id+" readLight";
 	    MqttMessage     publication = new MqttMessage(message.getBytes());
 	    topic.publish(publication);
@@ -72,7 +81,10 @@ public class readFunction{
 		MqttClient client = connection();
 		MqttTopic topic = addTopicin(client);
 		MqttTopic topicout = addTopicout(client);
-		client.setCallback(new ReadWindlerMqttCallBack());
+		
+		ReadWindlerMqttCallBack mqttCall = new ReadWindlerMqttCallBack(client);
+	    client.setCallback(mqttCall);
+		
 		String     message  = id+" readWindler";
 	    MqttMessage     publication = new MqttMessage(message.getBytes());
 	    topic.publish(publication);
@@ -83,7 +95,10 @@ public class readFunction{
 		MqttClient client = connection();
 		MqttTopic topic = addTopicin(client);
 		MqttTopic topicout = addTopicout(client);
-		client.setCallback(new ReadDisplayMqttCallBack());
+		
+		ReadDisplayMqttCallBack mqttCall = new ReadDisplayMqttCallBack(client);
+		client.setCallback(mqttCall);
+	
 		String     message  = id+" readDisplay";
 	    MqttMessage     publication = new MqttMessage(message.getBytes());
 	    topic.publish(publication);
@@ -94,7 +109,10 @@ public class readFunction{
 		MqttClient client = connection();
 		MqttTopic topic = addTopicin(client);
 		MqttTopic topicout = addTopicout(client);
-		client.setCallback(new ReadAlarmMqttCallBack());
+		
+		ReadAlarmMqttCallBack mqttCall = new ReadAlarmMqttCallBack(client);
+		client.setCallback(mqttCall);
+		
 		String     message  = id+" readAlarm";
 	    MqttMessage     publication = new MqttMessage(message.getBytes());
 	    topic.publish(publication);

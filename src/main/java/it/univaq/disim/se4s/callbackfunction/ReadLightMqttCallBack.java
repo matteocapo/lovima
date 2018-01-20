@@ -4,10 +4,16 @@ import it.univaq.disim.se4s.dbquery.*;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
+import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 
 public class ReadLightMqttCallBack implements MqttCallback {
+	
+	public MqttClient client;
+	public ReadLightMqttCallBack(MqttClient client) {
+		this.client = client;
+	}
 	
 	public void connectionLost(Throwable throwable) {
 		System.out.println("Connessione persa!");
@@ -20,6 +26,7 @@ public class ReadLightMqttCallBack implements MqttCallback {
 		String id = splits[0];
 		Integer value = Integer.parseInt(splits[1]);
 		DbInterface.setLight(id, value);
+		client.disconnect();
 
 		}
 

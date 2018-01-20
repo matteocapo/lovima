@@ -20,7 +20,8 @@ public class App {
 		//DbInterface.setLight("1", 237);
 		//System.err.println(DbInterface.getLight("1"));
 		//System.out.println("fine");
-		whoIsFunction.whoIs();
+		//whoIsFunction.whoIs();
+		readFunction.readAlarm("1");
 	}
 
 	
