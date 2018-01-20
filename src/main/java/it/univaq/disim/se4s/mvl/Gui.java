@@ -1,4 +1,4 @@
-package it.univaq.disim.se4as.mvl;
+/*package it.univaq.disim.se4as.mvl;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.*;
@@ -590,4 +590,4 @@ static List<String> old_active_box_list = new ArrayList<String>();
 	  return getWaterQnt(id);
   }
 }
-
+*/

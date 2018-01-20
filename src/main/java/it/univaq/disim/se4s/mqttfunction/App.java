@@ -1,7 +1,7 @@
 package it.univaq.disim.se4s.mqttfunction;
 
 import java.sql.SQLException;
-
+import java.util.Map;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 
@@ -21,7 +21,10 @@ public class App {
 		//System.err.println(DbInterface.getLight("1"));
 		//System.out.println("fine");
 		//whoIsFunction.whoIs();
-		readFunction.readAlarm("1");
+		//readFunction.readThemperature("25");
+		DbInterface.setFoodQnt("25", "50");
+		DbInterface.setHumidity("25", (float) 23.6);
+
 	}
 
 	

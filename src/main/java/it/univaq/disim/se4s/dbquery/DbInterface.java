@@ -3,10 +3,14 @@ package it.univaq.disim.se4s.dbquery;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.util.List;
+import java.util.Map;
+import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
 
 
 public class DbInterface {
@@ -132,6 +136,54 @@ public class DbInterface {
 	  return display;
   }
   
+  public static Map<String, String> getAllValue(String id) throws SQLException {
+	 
+	  Map<String, String> diz = new HashMap<String, String>();
+	  
+	  Connection connection = connector();
+
+	  String query = "SELECT * FROM `boxes` WHERE `id_box`= "+id+" ORDER BY id DESC LIMIT 1";
+
+	  
+	  try {
+		  Statement stmt = connection.createStatement();
+		  try {
+			  
+			  ResultSet rs = stmt.executeQuery(query);
+			  while (rs.next()) {
+				  
+				  diz.put("idAnimals", rs.getString("idAnimals"));
+				  diz.put("animalsN", rs.getString("animalsN"));
+				  diz.put("temp", rs.getString("temp"));
+				  diz.put("foodQnt", rs.getString("foodQnt"));
+				  diz.put("waterQnt", rs.getString("waterQnt"));
+				  diz.put("humidity", rs.getString("humidity"));
+				  diz.put("alarm", rs.getString("alarm"));
+				  diz.put("light", rs.getString("light"));
+				  diz.put("display", rs.getString("display"));
+				  diz.put("windler", rs.getString("windler"));
+				  diz.put("type", rs.getString("type"));	
+				  
+
+			  }
+			  System.out.println("query riuscita");
+			  return diz;
+			  
+		  }
+		  catch (Exception e) {
+			  e.getStackTrace();
+			  System.out.println(e);
+			  System.out.println("Errore query");
+		}
+	  }
+	  catch (SQLException e) {
+			  System.out.println("Errore Statment");
+			  e.printStackTrace();
+			  }	
+	  connection.close();
+	  return diz;
+  }
+  
   public static Float getHumidity(String id) throws SQLException {
 	  Connection connection = connector();
 
@@ -202,7 +254,7 @@ public class DbInterface {
 	  Connection connection = connector();
 
 	  Float temp = null;
-	  String query = "SELECT `temp` FROM `boxes` WHERE `id_box`= "+id+" ORDER BY id DESC LIMIT 1";
+	  String query = "SELECT `temp` FROM `boxes` WHERE `id_box`= "+id+" ORDER BY id ASC LIMIT 1";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -210,7 +262,7 @@ public class DbInterface {
 			  
 			  ResultSet rs = stmt.executeQuery(query);
 			  while (rs.next()) {
-				  temp = rs.getFloat("light");
+				  temp = rs.getFloat("temp");
 			  }
 
 			  System.out.println("query riuscita");
@@ -435,6 +487,8 @@ public class DbInterface {
   public static void setAlarm(String id, Boolean value) throws SQLException {
 	  Connection connection = connector();
 	  
+	  Map <String, String> map = getAllValue(id);
+	  
 	  int val;
 	  if(value) {
 		   val = 1;
@@ -445,7 +499,10 @@ public class DbInterface {
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`alarm`, `id_box`) values('"+val+"', '"+id+"')");
+			  
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`alarm`, `id_box`, `idAnimals`, `animalsN`, `temp`, `foodQnt`, `waterQnt`, `light`, `humidity`, `display`, `windler`, `type`) "
+			  		+ "values('"+val+"', '"+id+"', '"+map.get("idAnimals")+"', '"+map.get("animalsN")+"', '"+map.get("temp")+"', '"+map.get("foodQnt")+"', '"+map.get("waterQnt")+"', '"+map.get("light")+"', '"+map.get("humidity")+"'"
+			  				+ ", '"+map.get("display")+"', '"+map.get("windler")+"', '"+map.get("type")+"')");
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -464,6 +521,8 @@ public class DbInterface {
   public static void setDisplay(String id, Boolean value) throws SQLException {
 	  Connection connection = connector();
 	  
+	  Map <String, String> map = getAllValue(id);
+	  
 	  int val;
 	  if(value) {
 		   val = 1;
@@ -474,7 +533,10 @@ public class DbInterface {
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`display`, `id_box`) values('"+val+"', '"+id+"')"); 
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`display`, `id_box`, `idAnimals`, `animalsN`, `temp`, `foodQnt`, `waterQnt`, `light`, `humidity`, `alarm`, `windler`, `type`) "
+				  		+ "values('"+val+"', '"+id+"', '"+map.get("idAnimals")+"', '"+map.get("animalsN")+"', '"+map.get("temp")+"', '"+map.get("foodQnt")+"', '"+map.get("waterQnt")+"', '"+map.get("light")+"', '"+map.get("humidity")+"'"
+				  				+ ", '"+map.get("alarm")+"', '"+map.get("windler")+"', '"+map.get("type")+"')");
+			  //stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`display`, `id_box`) values('"+val+"', '"+id+"')"); 
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -491,10 +553,16 @@ public class DbInterface {
   
   public static void setHumidity(String id, Float value) throws SQLException {
 	  Connection connection = connector();
+	  
+	  Map <String, String> map = getAllValue(id);
+
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`humidity`, `id_box`) values('"+value+"', '"+id+"')"); 
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`humidity`, `id_box`, `idAnimals`, `animalsN`, `temp`, `foodQnt`, `waterQnt`, `light`, `display`, `alarm`, `windler`, `type`) "
+				  		+ "values('"+value+"', '"+id+"', '"+map.get("idAnimals")+"', '"+map.get("animalsN")+"', '"+map.get("temp")+"', '"+map.get("foodQnt")+"', '"+map.get("waterQnt")+"', '"+map.get("light")+"', '"+map.get("display")+"'"
+				  				+ ", '"+map.get("alarm")+"', '"+map.get("windler")+"', '"+map.get("type")+"')");
+			  //stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`humidity`, `id_box`) values('"+value+"', '"+id+"')"); 
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -511,10 +579,16 @@ public class DbInterface {
   
   public static void setLight(String id, Integer value) throws SQLException {
 	  Connection connection = connector();
+	  
+	  Map <String, String> map = getAllValue(id);
+
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`light`, `id_box`) values('"+value+"', '"+id+"')"); 
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`light`, `id_box`, `idAnimals`, `animalsN`, `temp`, `foodQnt`, `waterQnt`, `humidity`, `display`, `alarm`, `windler`, `type`) "
+				  		+ "values('"+value+"', '"+id+"', '"+map.get("idAnimals")+"', '"+map.get("animalsN")+"', '"+map.get("temp")+"', '"+map.get("foodQnt")+"', '"+map.get("waterQnt")+"', '"+map.get("humidity")+"', '"+map.get("display")+"'"
+				  				+ ", '"+map.get("alarm")+"', '"+map.get("windler")+"', '"+map.get("type")+"')");
+			  //stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`light`, `id_box`) values('"+value+"', '"+id+"')"); 
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -531,10 +605,16 @@ public class DbInterface {
   
   public static void setThemperature(String id, Float value) throws SQLException {
 	  Connection connection = connector();
+	  
+	  Map <String, String> map = getAllValue(id);
+
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`temp`, `id_box`) values('"+value+"', '"+id+"')"); 
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`temp`, `id_box`, `idAnimals`, `animalsN`, `light`, `foodQnt`, `waterQnt`, `humidity`, `display`, `alarm`, `windler`, `type`) "
+				  		+ "values('"+value+"', '"+id+"', '"+map.get("idAnimals")+"', '"+map.get("animalsN")+"', '"+map.get("light")+"', '"+map.get("foodQnt")+"', '"+map.get("waterQnt")+"', '"+map.get("humidity")+"', '"+map.get("display")+"'"
+				  				+ ", '"+map.get("alarm")+"', '"+map.get("windler")+"', '"+map.get("type")+"')");
+			  //stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`temp`, `id_box`) values('"+value+"', '"+id+"')"); 
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -552,6 +632,8 @@ public class DbInterface {
   public static void setWindler(String id, Boolean value) throws SQLException {
 	  Connection connection = connector();
 	  
+	  Map <String, String> map = getAllValue(id);
+	  
 	  int val;
 	  if(value) {
 		   val = 1;
@@ -562,7 +644,10 @@ public class DbInterface {
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`windler`, `id_box`) values('"+val+"', '"+id+"')"); 
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`windler`, `id_box`, `idAnimals`, `animalsN`, `light`, `foodQnt`, `waterQnt`, `humidity`, `display`, `alarm`, `temp`, `type`) "
+				  		+ "values('"+val+"', '"+id+"', '"+map.get("idAnimals")+"', '"+map.get("animalsN")+"', '"+map.get("light")+"', '"+map.get("foodQnt")+"', '"+map.get("waterQnt")+"', '"+map.get("humidity")+"', '"+map.get("display")+"'"
+				  				+ ", '"+map.get("alarm")+"', '"+map.get("temp")+"', '"+map.get("type")+"')");
+			  //stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`windler`, `id_box`) values('"+val+"', '"+id+"')"); 
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -579,10 +664,16 @@ public class DbInterface {
 
   public static void setType(String id, String value) throws SQLException {
 	  Connection connection = connector();
+	  
+	  Map <String, String> map = getAllValue(id);
+	  
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`type`, `id_box`) values('"+value+"', '"+id+"')"); 
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`type`, `id_box`, `idAnimals`, `animalsN`, `light`, `foodQnt`, `waterQnt`, `humidity`, `display`, `alarm`, `temp`, `windler`) "
+				  		+ "values('"+value+"', '"+id+"', '"+map.get("idAnimals")+"', '"+map.get("animalsN")+"', '"+map.get("light")+"', '"+map.get("foodQnt")+"', '"+map.get("waterQnt")+"', '"+map.get("humidity")+"', '"+map.get("display")+"'"
+				  				+ ", '"+map.get("alarm")+"', '"+map.get("temp")+"', '"+map.get("windler")+"')");
+			  //stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`type`, `id_box`) values('"+value+"', '"+id+"')"); 
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -599,10 +690,16 @@ public class DbInterface {
 
   public static void setAnimalsN(String id, String value) throws SQLException {
 	  Connection connection = connector();
+
+	  Map <String, String> map = getAllValue(id);
+
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`animalsN`, `id_box`) values('"+value+"', '"+id+"')"); 
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`animalsN`, `id_box`, `idAnimals`, `type`, `light`, `foodQnt`, `waterQnt`, `humidity`, `display`, `alarm`, `temp`, `windler`) "
+				  		+ "values('"+value+"', '"+id+"', '"+map.get("idAnimals")+"', '"+map.get("type")+"', '"+map.get("light")+"', '"+map.get("foodQnt")+"', '"+map.get("waterQnt")+"', '"+map.get("humidity")+"', '"+map.get("display")+"'"
+				  				+ ", '"+map.get("alarm")+"', '"+map.get("temp")+"', '"+map.get("windler")+"')");
+			  //stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`animalsN`, `id_box`) values('"+value+"', '"+id+"')"); 
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -619,10 +716,16 @@ public class DbInterface {
   
   public static void setFoodQnt(String id, String value) throws SQLException {
 	  Connection connection = connector();
+	  
+	  Map <String, String> map = getAllValue(id);
+	  
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`foodQnt`, `id_box`) values('"+value+"', '"+id+"')"); 
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`foodQnt`, `id_box`, `idAnimals`, `type`, `light`, `animalsN`, `waterQnt`, `humidity`, `display`, `alarm`, `temp`, `windler`) "
+				  		+ "values('"+value+"', '"+id+"', '"+map.get("idAnimals")+"', '"+map.get("type")+"', '"+map.get("light")+"', '"+map.get("animalsN")+"', '"+map.get("waterQnt")+"', '"+map.get("humidity")+"', '"+map.get("display")+"'"
+				  				+ ", '"+map.get("alarm")+"', '"+map.get("temp")+"', '"+map.get("windler")+"')");
+			  //stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`foodQnt`, `id_box`) values('"+value+"', '"+id+"')"); 
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -639,10 +742,17 @@ public class DbInterface {
   
   public static void setWaterQnt(String id, String value) throws SQLException {
 	  Connection connection = connector();
+
+	  Map <String, String> map = getAllValue(id);
+
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
-			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`waterQnt`, `id_box`) values('"+value+"', '"+id+"')"); 	
+			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`waterQnt`, `id_box`, `idAnimals`, `type`, `light`, `animalsN`, `foodQnt`, `humidity`, `display`, `alarm`, `temp`, `windler`) "
+				  		+ "values('"+value+"', '"+id+"', '"+map.get("idAnimals")+"', '"+map.get("type")+"', '"+map.get("light")+"', '"+map.get("animalsN")+"', '"+map.get("foodQnt")+"', '"+map.get("humidity")+"', '"+map.get("display")+"'"
+				  				+ ", '"+map.get("alarm")+"', '"+map.get("temp")+"', '"+map.get("windler")+"')");
+			  
+			  //stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`waterQnt`, `id_box`) values('"+value+"', '"+id+"')"); 	
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
