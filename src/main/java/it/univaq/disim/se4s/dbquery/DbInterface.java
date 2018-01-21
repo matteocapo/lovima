@@ -853,6 +853,32 @@ public class DbInterface {
 	  connection.close(); 
 	  
   }
+  
+  public static void setAll(String id, Float humidity, Float temp, int light, Boolean alarm, Boolean display,Boolean windler, String idanimal, String type) throws SQLException {
+	  
+		Connection connection = connector();
+
+		  try {
+			  Statement stmt = connection.createStatement();
+			  try {
+				  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`id`, `humidity`, `temp`, `light`, `alarm`, `display`, `windler`, `idAnimals`, `type`) "
+					  		+ "values('"+id+"', '"+humidity+"', '"+temp+"', '"+light+"', '"+alarm+"', '"+display+"', '"+windler+"', '"+idanimal+"', '"+type+"')");
+				  //stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`foodQnt`, `id_box`) values('"+value+"', '"+id+"')"); 
+				  stmt.close(); 	  connection.close();
+				  System.out.println("query riuscita");
+			  }
+			  catch (Exception e) {
+				  System.out.println(e);
+				  System.out.println("Errore query");
+			}
+		  }
+		  catch (SQLException e) {
+				  System.out.println("Errore Statment");
+				  e.printStackTrace();
+				  }	
+		  connection.close(); 
+	}
+	
+}
 
   
-}

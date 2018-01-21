@@ -118,4 +118,19 @@ public class readFunction{
 	    topic.publish(publication);
 	}
 	
+	public static void readAll(String id) throws MqttException {
+		
+		MqttClient client = connection();
+		MqttTopic topic = addTopicin(client);
+		MqttTopic topicout = addTopicout(client);
+		
+		ReadAllMqttCallBack mqttCall = new ReadAllMqttCallBack(client);
+		client.setCallback(mqttCall);
+		
+		String     message  = id+" readAll";
+	    MqttMessage     publication = new MqttMessage(message.getBytes());
+	    topic.publish(publication);
+		
+	}
+	
 }
