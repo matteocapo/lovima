@@ -25,27 +25,27 @@ public class setFunction{
 	}
 	
 	//funzione per accendere o spegnere la ventola
-	public void setWindler(String id, Boolean value) throws MqttException {
+	public static void setWindler(String id, Boolean value) throws MqttException {
 		MqttClient client = connection();
-	    String     message  = id +" "+ value.toString();
+	    String     message  = id +" setWindler "+ value.toString();
 	    MqttTopic topic = addTopic(client);
 	    MqttMessage     publication = new MqttMessage(message.getBytes());
 	    topic.publish(publication);
 	    }
 	
 	//funzione per chiudere o aprire la finestra
-	public void setDisplay(String id ,Boolean value) throws MqttException {
+	public static void setDisplay(String id ,Boolean value) throws MqttException {
 		MqttClient client = connection();
-	    String     message  = id +" "+ value.toString();
+	    String     message  = id +" setDisplay "+ value.toString();
 	    MqttTopic topic = addTopic(client);
 	    MqttMessage     publication = new MqttMessage(message.getBytes());
 	    topic.publish(publication);
 	}
 	
 	//funzione per accendere o spegnere l'allarme
-	public void setAlarm(String id, Boolean value) throws MqttException {
+	public static void setAlarm(String id, Boolean value) throws MqttException {
 		MqttClient client = connection();
-	    String     message  = id +" "+ value.toString();
+	    String     message  = id +" setAlarm "+ value.toString();
 	    MqttTopic topic = addTopic(client);
 	    MqttMessage     publication = new MqttMessage(message.getBytes());
 	    topic.publish(publication);

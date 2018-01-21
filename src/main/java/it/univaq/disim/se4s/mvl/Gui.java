@@ -1,9 +1,17 @@
-/*package it.univaq.disim.se4as.mvl;
+package it.univaq.disim.se4s.mvl;
 
+import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.*;
 import org.eclipse.swt.widgets.*;
+
+import it.univaq.disim.se4s.dbquery.DbInterface;
+import it.univaq.disim.se4s.mqttfunction.readFunction;
+import it.univaq.disim.se4s.mqttfunction.setFunction;
+
 import org.eclipse.swt.layout.*;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +51,7 @@ static List<String> old_active_box_list = new ArrayList<String>();
       public void run() {
           while(true) {
     	  try {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
           } catch (Throwable th) {
           }
           if (display.isDisposed())
@@ -56,7 +64,12 @@ static List<String> old_active_box_list = new ArrayList<String>();
             		return;
             	if (composite2.isDisposed())
             		return;
-            	updateBoxList(composite1,composite2);
+            	try {
+					updateBoxList(composite1,composite2);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
           });
           }
@@ -69,7 +82,7 @@ static List<String> old_active_box_list = new ArrayList<String>();
     display.dispose();
   }
   
-  public static void updateBoxList(Composite composite1, Composite composite2) {
+  public static void updateBoxList(Composite composite1, Composite composite2) throws SQLException {
 	  final Composite comp2 = composite2;
 	  //List<String> new_active_box_list = getOnlineBoxes();
 	  List<String> new_active_box_list = getActiveBoxes();
@@ -101,7 +114,15 @@ static List<String> old_active_box_list = new ArrayList<String>();
 		//premendo il bottone si apre nel secondo contenitore principale la lista dei dettagli della teca selezionata
 	  	button.addListener(SWT.Selection, new Listener() { 
 	  			 public void handleEvent(Event e) {
-	  				 showDetails(id, comp2);
+	  				 try {
+						showDetails(id, comp2);
+					} catch (MqttException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 	  			 }
 	  	});
 			  
@@ -137,7 +158,7 @@ static List<String> old_active_box_list = new ArrayList<String>();
 	  }
   }
 
-  public static void showDetails(int id, Composite composite2) {
+  public static void showDetails(int id, Composite composite2) throws MqttException, SQLException {
 	  Control[] children = composite2.getChildren();
 	  for(Control e : children) {
 		  if(e instanceof Text) {
@@ -175,11 +196,11 @@ static List<String> old_active_box_list = new ArrayList<String>();
 				((Text) e).setText(alarm_state);
 			  	break;
 			  	case 24:
-			  	Float food = askAnimalFood(String.valueOf(id));
+			  	Double food = askAnimalFood(String.valueOf(id));
 				((Text) e).setText(String.valueOf(food));
 			  	break;
 			  	case 28:
-			  	Float water = askAnimalWater(String.valueOf(id));
+			  	Double water = askAnimalWater(String.valueOf(id));
 				((Text) e).setText(String.valueOf(water));
 				break;
 			  }
@@ -263,7 +284,16 @@ static List<String> old_active_box_list = new ArrayList<String>();
       buttonOn.addListener(SWT.Selection, new Listener() { 
 		    public void handleEvent(Event e) {
 		        if (windler_text.getText().equals("OFF")) {
-		        	String com = setWindler(String.valueOf(id), "ON");
+		        	String com = null;
+					try {
+						com = setWindler(id_text.getText(), "ON");
+					} catch (MqttException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 		        	windler_text.setText(com);
 				}
 		    }
@@ -273,7 +303,16 @@ static List<String> old_active_box_list = new ArrayList<String>();
       buttonOff.addListener(SWT.Selection, new Listener() { 
 		    public void handleEvent(Event e) {
 		        if (windler_text.getText().equals("ON")) {
-		        	String com = setWindler(String.valueOf(id),"OFF");
+		        	String com = null;
+					try {
+						com = setWindler(id_text.getText(),"OFF");
+					} catch (MqttException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 		        	windler_text.setText(com);
 				}
 		    }
@@ -290,7 +329,16 @@ static List<String> old_active_box_list = new ArrayList<String>();
       displayOn.addListener(SWT.Selection, new Listener() { 
 		    public void handleEvent(Event e) {
 		        if (display_text.getText().equals("OFF")) {
-		        	String com = setDisplay(String.valueOf(id), "ON");
+		        	String com = null;
+					try {
+						com = setDisplay(id_text.getText(), "ON");
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (MqttException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 		        	display_text.setText(com);
 				}
 		    }
@@ -300,7 +348,16 @@ static List<String> old_active_box_list = new ArrayList<String>();
       displayOff.addListener(SWT.Selection, new Listener() { 
 		    public void handleEvent(Event e) {
 		        if (display_text.getText().equals("ON")) {
-		        	String com = setDisplay(String.valueOf(id), "OFF");
+		        	String com = null;
+					try {
+						com = setDisplay(id_text.getText(), "OFF");
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (MqttException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 		        	display_text.setText(com);
 				}
 		    }
@@ -317,7 +374,16 @@ static List<String> old_active_box_list = new ArrayList<String>();
       alarmOn.addListener(SWT.Selection, new Listener() { 
 		    public void handleEvent(Event e) {
 		        if (alarm_text.getText().equals("OFF")) {
-		        	String com = setAlarm(String.valueOf(id), "ON");
+		        	String com = null;
+					try {
+						com = setAlarm(id_text.getText(), "ON");
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (MqttException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 		        	alarm_text.setText(com);
 				}
 		    }
@@ -327,7 +393,16 @@ static List<String> old_active_box_list = new ArrayList<String>();
       alarmOff.addListener(SWT.Selection, new Listener() { 
 		    public void handleEvent(Event e) {
 		        if (alarm_text.getText().equals("ON")) {
-		        	String com = setAlarm(String.valueOf(id), "OFF");
+		        	String com = null;
+					try {
+						com = setAlarm(id_text.getText(), "OFF");
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (MqttException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 		        	alarm_text.setText(com);
 				}
 		    }
@@ -344,10 +419,16 @@ static List<String> old_active_box_list = new ArrayList<String>();
       moreFood.addListener(SWT.Selection, new Listener() { 
 		    public void handleEvent(Event e) {
 		    	if (!food_text.getText().equals("")) {
-		    		Float amount = setFood(String.valueOf(id), 10);
+		    		Double amount = null;
+					try {
+						amount = setFood(id_text.getText(), 10);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 		    		//Float amount = Float.parseFloat(food_text.getText());
 		    		//amount+=10;
-		    		food_text.setText(Float.toString(amount));
+		    		food_text.setText(Double.toString(amount));
 				}
 		    }
 	  });
@@ -357,10 +438,16 @@ static List<String> old_active_box_list = new ArrayList<String>();
 		    public void handleEvent(Event e) {
 		    	if (!food_text.getText().equals("")) {
 		    		if(Float.parseFloat(food_text.getText())>=10) {
-		    			Float amount = setFood(String.valueOf(id), -10);
+		    			Double amount = null;
+						try {
+							amount = setFood(id_text.getText(), -10);
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 		    			//Float amount = Float.parseFloat(food_text.getText());
 		    			//amount-=10;
-		    			food_text.setText(Float.toString(amount));
+		    			food_text.setText(Double.toString(amount));
 		    		}
 				}
 		    }
@@ -377,10 +464,16 @@ static List<String> old_active_box_list = new ArrayList<String>();
       moreWater.addListener(SWT.Selection, new Listener() { 
 		    public void handleEvent(Event e) {
 		    	if (!water_text.getText().equals("")) {
-		    		Float amount = setWater(String.valueOf(id), 10);
+		    		Double amount = null;
+					try {
+						amount = setWater(id_text.getText(), 10);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 		    		//Float amount = Float.parseFloat(water_text.getText());
 		    		//amount+=10;
-		    		water_text.setText(Float.toString(amount));
+		    		water_text.setText(Double.toString(amount));
 				}
 		    }
 	  });
@@ -390,10 +483,16 @@ static List<String> old_active_box_list = new ArrayList<String>();
 		    public void handleEvent(Event e) {
 		    	if (!water_text.getText().equals("")) {
 		    		if(Float.parseFloat(water_text.getText())>=10) {
-		    			Float amount = setWater(String.valueOf(id), -10);
+		    			Double amount = null;
+						try {
+							amount = setWater(id_text.getText(), -10);
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 		    			//Float amount = Float.parseFloat(water_text.getText());
 		    			//amount-=10;
-		    			water_text.setText(Float.toString(amount));
+		    			water_text.setText(Double.toString(amount));
 		    		}
 				}
 		    }
@@ -415,8 +514,8 @@ static List<String> old_active_box_list = new ArrayList<String>();
 	    }
 	}
   // da implementare controlla che ci sia una nuova teca attiva
-  public static List<String> getDeactivedBoxes() {
-	  List<String> new_active_box_list = getOnlineBoxes();
+  public static List<String> getDeactivedBoxes() throws SQLException {
+	  List<String> new_active_box_list = DbInterface.getOnlibeBoxes();
 	  //List<String> new_active_box_list = new ArrayList<String>();
 	  List<String> deactived_box_list = new ArrayList<String>();
 	  for(Integer i=0; i<old_active_box_list.size(); i++) {
@@ -434,8 +533,8 @@ static List<String> old_active_box_list = new ArrayList<String>();
 	  return deactived_box_list;
   }
   
-  public static List<String> getActiveBoxes() {
-	  List<String> new_active_box_list = getOnlineBoxes();
+  public static List<String> getActiveBoxes() throws SQLException {
+	  List<String> new_active_box_list = DbInterface.getOnlibeBoxes();
 	  //List<String> new_active_box_list = new ArrayList<String>();
 	  List<String> active_box_list = new ArrayList<String>();
 	  for(Integer i=0; i<new_active_box_list.size(); i++) {
@@ -455,33 +554,33 @@ static List<String> old_active_box_list = new ArrayList<String>();
   
   // da implementare...le funzioni qui sotto tornano valori relativi alle varie 
   // informazioni sulla teca da prendere sul db tramite mqtt
-  public static Float readTemperature(String id) {
-	  readTemperature(id);
-	  Float temp = getThemperature(id);
+  public static Float readTemperature(String id) throws SQLException, MqttException {
+	  readFunction.readThemperature(id);
+	  Float temp = DbInterface.getThemperature(id);
 	  return temp;
   }
   
-  public static Integer askAnimalNumber(String id) {
-	  Integer num = getAnimalsN(id);
+  public static Integer askAnimalNumber(String id) throws SQLException {
+	  Integer num = DbInterface.getAnimalsN(id);
 	  return num;
   }
   
-  public static Float readHumidity(String id) {
-	  readHumidity(id);
-	  Float hum = getHumidity(id);
+  public static Float readHumidity(String id) throws MqttException, SQLException {
+	  readFunction.readHumidity(id);
+	  Float hum = DbInterface.getHumidity(id);
 	  return hum;
   }
   
-  public static Integer readLight(String id) {
-	  readLight(id);
-	  Integer luce = getLight(id);
+  public static Integer readLight(String id) throws MqttException, SQLException {
+	  readFunction.readLight(id);
+	  Integer luce = DbInterface.getLight(id);
 	  return luce;
   }
   
-  public static String readWindler(String id) {
+  public static String readWindler(String id) throws MqttException, SQLException {
 	  //Boolean state = false;
-	  readWindler(id);
-	  Boolean state = getWindler(id);
+	  readFunction.readWindler(id);
+	  Boolean state = DbInterface.getWindler(id);
 	  if(state == true) {
 		  return "ON";
 	  }
@@ -490,10 +589,10 @@ static List<String> old_active_box_list = new ArrayList<String>();
 	  }
   }
   
-  public static String readDisplay(String id) {
+  public static String readDisplay(String id) throws MqttException, SQLException {
 	  //Boolean state = false;
-	  readDisplay(id);
-	  Boolean state = getDisplay(id);
+	  readFunction.readDisplay(id);
+	  Boolean state = DbInterface.getDisplay(id);
 	  if(state == true) {
 		  return "ON";
 	  }
@@ -502,10 +601,10 @@ static List<String> old_active_box_list = new ArrayList<String>();
 	  }
   }
   
-  public static String readAlarm(String id) {
+  public static String readAlarm(String id) throws MqttException, SQLException {
 	  //Boolean state = false;
-	  readAlarm(id);
-	  Boolean state = getAlarm(id);
+	  readFunction.readAlarm(id);
+	  Boolean state = DbInterface.getAlarm(id);
 	  if(state == true) {
 		  return "ON";
 	  }
@@ -514,25 +613,26 @@ static List<String> old_active_box_list = new ArrayList<String>();
 	  }
   }
   
-  public static Float askAnimalFood(String id) {
-	  Float food = getFoodQnt(id);
+  public static Double askAnimalFood(String id) throws SQLException {
+	  Double food = DbInterface.getFoodQnt(id);
 	  return food;
   }
   
-  public static Float askAnimalWater(String id) {
-	  Float water = getWaterQnt(id);
+  public static Double askAnimalWater(String id) throws SQLException {
+	  Double water = DbInterface.getWaterQnt(id);
 	  return water;
   }
   
   //funzioni che settano dei valori nel db tramite la Gui
-  public static String setWindler(String id,String com) {
+  public static String setWindler(String id,String com) throws MqttException, SQLException {
+	  boolean state;
 	  if(com.equals("ON")){
-		  setWindler(id,true);
+		  setFunction.setWindler(id,true);
 	  }
 	  else{
-		  setWindler(id, false);
+		  setFunction.setWindler(id, false);
 	  }
-	  state = getWindler(id);
+	  state = DbInterface.getWindler(id);
 	  if(state) {
 		  return "ON";
 	  }
@@ -541,14 +641,15 @@ static List<String> old_active_box_list = new ArrayList<String>();
 	  }
   }
   
-  public static String setDisplay(String id, String com) {
+  public static String setDisplay(String id, String com) throws SQLException, MqttException {
+	  boolean state;
 	  if(com.equals("ON")){
-		  setDisplay(id,true);
+		  setFunction.setDisplay(id,true);
 	  }
 	  else{
-		  setDisplay(id, false);
+		  setFunction.setDisplay(id, false);
 	  }
-	  state = getDisplay(id);
+	  state = DbInterface.getDisplay(id);
 	  if(state) {
 		  return "ON";
 	  }
@@ -557,15 +658,15 @@ static List<String> old_active_box_list = new ArrayList<String>();
 	  }
   }
 
-  public static String setAlarm(String id, String com) {
+  public static String setAlarm(String id, String com) throws SQLException, MqttException {
 	  Boolean state;
 	  if(com.equals("ON")){
-		  setAlarm(id, true);
+		  setFunction.setAlarm(id, true);
 	  }
 	  else{
-		  setAlarm(id, false);
+		  setFunction.setAlarm(id, false);
 	  }
-	  state = getAlarm(id);
+	  state = DbInterface.getAlarm(id);
 	  if(state) {
 		  return "ON";
 	  }
@@ -574,20 +675,20 @@ static List<String> old_active_box_list = new ArrayList<String>();
 	  }
   }
   
-  public static Float setFood(String id, Integer val) {
-	  Float food = getFoodQnt(id);
-	  Float new_food = food + val;
+  public static Double setFood(String id, Integer val) throws SQLException {
+	  Double food = DbInterface.getFoodQnt(id);
+	  Float new_food = (float) (food + val);
 	  String toStr = String.valueOf(new_food);
-	  setFoodQnt(id,toStr);
-	  return getFoodQnt(id);
+	  DbInterface.setFoodQnt(id,toStr);
+	  return DbInterface.getFoodQnt(id);
   }
 
-  public static Float setWater(String id, Integer val) {
-	  Float water = getWaterQnt(id);
-	  Float new_water = water + val;
+  public static Double setWater(String id, Integer val) throws SQLException {
+	  Double water = DbInterface.getWaterQnt(id);
+	  Float new_water = (float) (water + val);
 	  String toStr = String.valueOf(new_water);
-	  setFoodQnt(id,toStr);
-	  return getWaterQnt(id);
+	  DbInterface.setWaterQnt(id,toStr);
+	  return DbInterface.getWaterQnt(id);
   }
 }
-*/
+

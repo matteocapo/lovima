@@ -58,6 +58,8 @@ public class DbInterface {
 		  try {
 			  stmt.executeUpdate( "INSERT INTO `se4asdb`.`boxs` (`id`, `idMqtt`, `idAnimals`, `dateTime`, `animalsN`, `Temp`, `foodQnt`, `waterQnt`, `light`, `humidity`) VALUES ('2', '2', '2', '2018-01-02', '2', '24.5', '30', '40', '10', '15.4');" ); 
 			  System.out.println("query riuscita");
+			  stmt.close(); 	  connection.close();
+
 		  }
 		  catch (Exception e) {
 			  System.out.println(e);
@@ -74,7 +76,7 @@ public class DbInterface {
 	  Connection connection = connector();
 
 	  Boolean alarm = null;
-	  String query = "SELECT `alarm` FROM `boxes` WHERE `id_box`= "+id+" ORDER BY id DESC LIMIT 1";
+	  String query = "SELECT `alarm` FROM `boxes` WHERE `id_box`= '"+id+"' ORDER BY id DESC LIMIT 1";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -86,6 +88,8 @@ public class DbInterface {
 			  }
 
 			  System.out.println("query riuscita");
+
+			  stmt.close(); 	  connection.close();
 			  return alarm;
 			  
 		  }
@@ -107,7 +111,7 @@ public class DbInterface {
 	  Connection connection = connector();
 
 	  Boolean display = null;
-	  String query = "SELECT `display` FROM `boxes` WHERE `id_box`= "+id+"ORDER BY id DESC LIMIT 1";
+	  String query = "SELECT `display` FROM `boxes` WHERE `id_box`= '"+id+"' ORDER BY id DESC LIMIT 1";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -119,6 +123,8 @@ public class DbInterface {
 			  }
 
 			  System.out.println("query riuscita");
+
+			  stmt.close(); 	  connection.close();
 			  return display;
 			  
 		  }
@@ -142,7 +148,7 @@ public class DbInterface {
 	  
 	  Connection connection = connector();
 
-	  String query = "SELECT * FROM `boxes` WHERE `id_box`= "+id+" ORDER BY id DESC LIMIT 1";
+	  String query = "SELECT * FROM `boxes` WHERE `id_box`= '"+id+"' ORDER BY id DESC LIMIT 1";
 
 	  
 	  try {
@@ -167,6 +173,8 @@ public class DbInterface {
 
 			  }
 			  System.out.println("query riuscita");
+			  
+			  stmt.close(); 	  connection.close();
 			  return diz;
 			  
 		  }
@@ -188,7 +196,7 @@ public class DbInterface {
 	  Connection connection = connector();
 
 	  Float humidity = null;
-	  String query = "SELECT `humidity` FROM `boxes` WHERE `id_box`= "+id+" ORDER BY id DESC LIMIT 1";
+	  String query = "SELECT `humidity` FROM `boxes` WHERE `id_box`= '"+id+"' ORDER BY id DESC LIMIT 1";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -200,6 +208,8 @@ public class DbInterface {
 			  }
 
 			  System.out.println("query riuscita");
+			  
+			  stmt.close(); 	  connection.close();
 			  return humidity;
 			  
 		  }
@@ -221,7 +231,7 @@ public class DbInterface {
 	  Connection connection = connector();
 
 	  Integer light = null;
-	  String query = "SELECT `light` FROM `boxes` WHERE `id_box`= "+id+" ORDER BY id DESC LIMIT 1";
+	  String query = "SELECT `light` FROM `boxes` WHERE `id_box`= '"+id+"' ORDER BY id DESC LIMIT 1";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -233,6 +243,8 @@ public class DbInterface {
 			  }
 
 			  System.out.println("query riuscita");
+			  
+			  stmt.close(); 	  connection.close();
 			  return light;
 			  
 		  }
@@ -254,7 +266,7 @@ public class DbInterface {
 	  Connection connection = connector();
 
 	  Float temp = null;
-	  String query = "SELECT `temp` FROM `boxes` WHERE `id_box`= "+id+" ORDER BY id ASC LIMIT 1";
+	  String query = "SELECT `temp` FROM `boxes` WHERE `id_box`= '"+id+"' ORDER BY id ASC LIMIT 1";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -266,6 +278,8 @@ public class DbInterface {
 			  }
 
 			  System.out.println("query riuscita");
+			  
+			  stmt.close(); 	  connection.close();
 			  return temp;
 			  
 		  }
@@ -287,7 +301,7 @@ public class DbInterface {
 	  Connection connection = connector();
 
 	  Boolean windler = null;
-	  String query = "SELECT `windler` FROM `boxes` WHERE `id_box`= "+id+" ORDER BY id DESC LIMIT 1";
+	  String query = "SELECT `windler` FROM `boxes` WHERE `id_box`= '"+id+"' ORDER BY id DESC LIMIT 1";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -295,10 +309,12 @@ public class DbInterface {
 			  
 			  ResultSet rs = stmt.executeQuery(query);
 			  while (rs.next()) {
-				  windler = rs.getBoolean("display");
+				  windler = rs.getBoolean("windler");
 			  }
 
 			  System.out.println("query riuscita");
+			  
+			  stmt.close(); 	  connection.close();
 			  return windler;
 			  
 		  }
@@ -320,7 +336,7 @@ public class DbInterface {
 	  Connection connection = connector();
 
 	  String type = null;
-	  String query = "SELECT `type` FROM `boxes` WHERE `id_box`= "+id+" ORDER BY id DESC LIMIT 1";
+	  String query = "SELECT `type` FROM `boxes` WHERE `id_box`= '"+id+"' ORDER BY id DESC LIMIT 1";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -332,6 +348,8 @@ public class DbInterface {
 			  }
 
 			  System.out.println("query riuscita");
+			  
+			  stmt.close(); 	  connection.close();
 			  return type;
 			  
 		  }
@@ -353,7 +371,7 @@ public class DbInterface {
 	  Connection connection = connector();
 
 	  Integer number = null;
-	  String query = "SELECT `animalsN` FROM `boxes` WHERE `id_box`= "+id+" ORDER BY id DESC LIMIT 1";
+	  String query = "SELECT `animalsN` FROM `boxes` WHERE `id_box`= '"+id+"' ORDER BY id DESC LIMIT 1";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -361,10 +379,12 @@ public class DbInterface {
 			  
 			  ResultSet rs = stmt.executeQuery(query);
 			  while (rs.next()) {
-				  number = rs.getInt("type");
+				  number = rs.getInt("animalsN");
 			  }
 
 			  System.out.println("query riuscita");
+			  
+			  stmt.close(); 	  connection.close();
 			  return number;
 			  
 		  }
@@ -386,7 +406,7 @@ public class DbInterface {
 	  Connection connection = connector();
 
 	  Double number = null;
-	  String query = "SELECT `foodQnt` FROM `boxes` WHERE `id_box`= "+id+" ORDER BY id DESC LIMIT 1";
+	  String query = "SELECT `foodQnt` FROM `boxes` WHERE `id_box`= '"+id+"' ORDER BY id DESC LIMIT 1";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -394,10 +414,12 @@ public class DbInterface {
 			  
 			  ResultSet rs = stmt.executeQuery(query);
 			  while (rs.next()) {
-				  number = rs.getDouble("type");
+				  number = rs.getDouble("foodQnt");
 			  }
 
 			  System.out.println("query riuscita");
+			  
+			  stmt.close(); 	  connection.close();
 			  return number;
 			  
 		  }
@@ -419,7 +441,7 @@ public class DbInterface {
 	  Connection connection = connector();
 
 	  Double number = null;
-	  String query = "SELECT `waterQnt` FROM `boxes` WHERE `id_box`= "+id+" ORDER BY id DESC LIMIT 1";
+	  String query = "SELECT `waterQnt` FROM `boxes` WHERE `id_box`= '"+id+"' ORDER BY id DESC LIMIT 1";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -427,10 +449,12 @@ public class DbInterface {
 			  
 			  ResultSet rs = stmt.executeQuery(query);
 			  while (rs.next()) {
-				  number = rs.getDouble("type");
+				  number = rs.getDouble("waterQnt");
 			  }
 
 			  System.out.println("query riuscita");
+			  
+			  stmt.close(); 	  connection.close();
 			  return number;
 			  
 		  }
@@ -466,6 +490,8 @@ public class DbInterface {
 			  }
 
 			  System.out.println("query riuscita");
+			  
+			  stmt.close(); 	  connection.close();
 			  return onlinebxes;
 		  }
 		  catch (Exception e) {
@@ -504,6 +530,8 @@ public class DbInterface {
 			  		+ "values('"+val+"', '"+id+"', '"+map.get("idAnimals")+"', '"+map.get("animalsN")+"', '"+map.get("temp")+"', '"+map.get("foodQnt")+"', '"+map.get("waterQnt")+"', '"+map.get("light")+"', '"+map.get("humidity")+"'"
 			  				+ ", '"+map.get("display")+"', '"+map.get("windler")+"', '"+map.get("type")+"')");
 			  System.out.println("query riuscita");
+		  
+			  stmt.close(); 	  connection.close();
 		  }
 		  catch (Exception e) {
 			  System.out.println(e);
@@ -538,6 +566,8 @@ public class DbInterface {
 				  				+ ", '"+map.get("alarm")+"', '"+map.get("windler")+"', '"+map.get("type")+"')");
 			  //stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`display`, `id_box`) values('"+val+"', '"+id+"')"); 
 			  System.out.println("query riuscita");
+			  stmt.close(); 	  connection.close();
+
 		  }
 		  catch (Exception e) {
 			  System.out.println(e);
@@ -563,6 +593,7 @@ public class DbInterface {
 				  		+ "values('"+value+"', '"+id+"', '"+map.get("idAnimals")+"', '"+map.get("animalsN")+"', '"+map.get("temp")+"', '"+map.get("foodQnt")+"', '"+map.get("waterQnt")+"', '"+map.get("light")+"', '"+map.get("display")+"'"
 				  				+ ", '"+map.get("alarm")+"', '"+map.get("windler")+"', '"+map.get("type")+"')");
 			  //stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`humidity`, `id_box`) values('"+value+"', '"+id+"')"); 
+			  stmt.close(); 	  connection.close();
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -589,6 +620,7 @@ public class DbInterface {
 				  		+ "values('"+value+"', '"+id+"', '"+map.get("idAnimals")+"', '"+map.get("animalsN")+"', '"+map.get("temp")+"', '"+map.get("foodQnt")+"', '"+map.get("waterQnt")+"', '"+map.get("humidity")+"', '"+map.get("display")+"'"
 				  				+ ", '"+map.get("alarm")+"', '"+map.get("windler")+"', '"+map.get("type")+"')");
 			  //stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`light`, `id_box`) values('"+value+"', '"+id+"')"); 
+			  stmt.close(); 	  connection.close();
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -615,6 +647,7 @@ public class DbInterface {
 				  		+ "values('"+value+"', '"+id+"', '"+map.get("idAnimals")+"', '"+map.get("animalsN")+"', '"+map.get("light")+"', '"+map.get("foodQnt")+"', '"+map.get("waterQnt")+"', '"+map.get("humidity")+"', '"+map.get("display")+"'"
 				  				+ ", '"+map.get("alarm")+"', '"+map.get("windler")+"', '"+map.get("type")+"')");
 			  //stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`temp`, `id_box`) values('"+value+"', '"+id+"')"); 
+			  stmt.close(); 	  connection.close();
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -648,6 +681,7 @@ public class DbInterface {
 				  		+ "values('"+val+"', '"+id+"', '"+map.get("idAnimals")+"', '"+map.get("animalsN")+"', '"+map.get("light")+"', '"+map.get("foodQnt")+"', '"+map.get("waterQnt")+"', '"+map.get("humidity")+"', '"+map.get("display")+"'"
 				  				+ ", '"+map.get("alarm")+"', '"+map.get("temp")+"', '"+map.get("type")+"')");
 			  //stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`windler`, `id_box`) values('"+val+"', '"+id+"')"); 
+			  stmt.close(); 	  connection.close();
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -674,6 +708,7 @@ public class DbInterface {
 				  		+ "values('"+value+"', '"+id+"', '"+map.get("idAnimals")+"', '"+map.get("animalsN")+"', '"+map.get("light")+"', '"+map.get("foodQnt")+"', '"+map.get("waterQnt")+"', '"+map.get("humidity")+"', '"+map.get("display")+"'"
 				  				+ ", '"+map.get("alarm")+"', '"+map.get("temp")+"', '"+map.get("windler")+"')");
 			  //stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`type`, `id_box`) values('"+value+"', '"+id+"')"); 
+			  stmt.close(); 	  connection.close();
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -700,6 +735,7 @@ public class DbInterface {
 				  		+ "values('"+value+"', '"+id+"', '"+map.get("idAnimals")+"', '"+map.get("type")+"', '"+map.get("light")+"', '"+map.get("foodQnt")+"', '"+map.get("waterQnt")+"', '"+map.get("humidity")+"', '"+map.get("display")+"'"
 				  				+ ", '"+map.get("alarm")+"', '"+map.get("temp")+"', '"+map.get("windler")+"')");
 			  //stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`animalsN`, `id_box`) values('"+value+"', '"+id+"')"); 
+			  stmt.close(); 	  connection.close();
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -726,6 +762,7 @@ public class DbInterface {
 				  		+ "values('"+value+"', '"+id+"', '"+map.get("idAnimals")+"', '"+map.get("type")+"', '"+map.get("light")+"', '"+map.get("animalsN")+"', '"+map.get("waterQnt")+"', '"+map.get("humidity")+"', '"+map.get("display")+"'"
 				  				+ ", '"+map.get("alarm")+"', '"+map.get("temp")+"', '"+map.get("windler")+"')");
 			  //stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`foodQnt`, `id_box`) values('"+value+"', '"+id+"')"); 
+			  stmt.close(); 	  connection.close();
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -753,6 +790,7 @@ public class DbInterface {
 				  				+ ", '"+map.get("alarm")+"', '"+map.get("temp")+"', '"+map.get("windler")+"')");
 			  
 			  //stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`waterQnt`, `id_box`) values('"+value+"', '"+id+"')"); 	
+			  stmt.close(); 	  connection.close();
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -778,6 +816,7 @@ public class DbInterface {
 		  try {
 			  stmt.executeUpdate("INSERT INTO `se4asdb`.`active_boxes` (`id_box`) VALUES ('"+id+"')");
 			  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes` (`id_box`, `type`, `idAnimals`) VALUES ('"+id+"', '"+type+"', '"+idAnimal+"')");
+			  stmt.close(); 	  connection.close();
 			  System.out.println("query riuscita");
 		  }
 		  catch (Exception e) {
@@ -798,6 +837,7 @@ public class DbInterface {
 		  Statement stmt = connection.createStatement();
 		  try {
 			  stmt.executeUpdate("DELETE FROM `se4asdb`.`active_boxes` WHERE `active_boxes`.`id_box` = '"+id+"'");
+			  stmt.close(); 	  connection.close();
 
 			  System.out.println("query riuscita");
 		  }
