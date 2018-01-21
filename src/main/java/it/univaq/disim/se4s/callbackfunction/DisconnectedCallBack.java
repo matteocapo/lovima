@@ -8,11 +8,11 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 
-public class WhoIsMqttCallBack implements MqttCallback {
+public class DisconnectedCallBack implements MqttCallback {
 	
 	public MqttClient client;
 	
-	public WhoIsMqttCallBack(MqttClient client) {
+	public DisconnectedCallBack(MqttClient client) {
 		this.client = client;
 	}
 	
@@ -24,11 +24,7 @@ public class WhoIsMqttCallBack implements MqttCallback {
 	public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
 		
 		String stringa = mqttMessage.toString();
-		String [] splits = stringa.split("\\ ");
-		String id = splits[0];
-		String tipo = splits[1];
-		String idAnimal = splits[2];
-		DbInterface.setOnlineBoxes(id, tipo, idAnimal);
+		DbInterface.deleteOnlineBox(stringa);
 		client.disconnect();
 		
 	}

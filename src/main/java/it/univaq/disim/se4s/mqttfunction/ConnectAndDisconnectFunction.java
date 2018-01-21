@@ -10,10 +10,11 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttTopic;
 
+import it.univaq.disim.se4s.callbackfunction.DisconnectedCallBack;
 import it.univaq.disim.se4s.callbackfunction.WhoIsMqttCallBack;
 import it.univaq.disim.se4s.dbquery.DbInterface;
 
-public class whoIsFunction{
+public class ConnectAndDisconnectFunction{
 	
 	static String topic = "topic-in";
 	static String topicout = "topic-out/";
@@ -43,34 +44,21 @@ public class whoIsFunction{
 	    String     message  ="whoIs";
 	    MqttTopic topic = addTopic(client);
 		MqttTopic topicout = addTopicout(client);
-		
-		final WhoIsMqttCallBack mqttCall = new WhoIsMqttCallBack(client);
-		client.setCallback(mqttCall);
-
-		final Timer timer = new Timer();
-		timer.schedule(new TimerTask() {
-			  @Override
-			  public void run() {
-			    if(!mqttCall.isMessageArrived) {
-			    	try {
-						client.setCallback(null);
-						client.disconnect();
-						client.close();
-
-						try {
-							DbInterface.deleteOnlineBox(DbInterface.getOnlibeBoxes().get(0));
-						} catch (Exception e) {
-
-						timer.cancel();
-						}
-					} catch (MqttException e) {
-						
-					}
-			    }
-			  }
-			}, 5*1000);
-		
+		WhoIsMqttCallBack mqttCall = new WhoIsMqttCallBack(client);
+		client.setCallback(mqttCall);	    
+		MqttMessage publication = new MqttMessage(message.getBytes());
+	    topic.publish(publication);
 	    
+
+	}
+	
+	public static void Disconnected() throws MqttException {
+		final MqttClient client = connection();
+	    String     message  ="disconnected";
+	    MqttTopic topic = addTopic(client);
+		MqttTopic topicout = addTopicout(client);
+		DisconnectedCallBack mqttCall = new DisconnectedCallBack(client);
+		client.setCallback(mqttCall);	    
 		MqttMessage publication = new MqttMessage(message.getBytes());
 	    topic.publish(publication);
 	    
