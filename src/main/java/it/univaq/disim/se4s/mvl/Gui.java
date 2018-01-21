@@ -19,6 +19,10 @@ public class Gui {
 
 static List<String> old_active_box_list = new ArrayList<String>();
 
+	private static Composite composite1;
+	private static Composite composite2;
+	private static Text id_text;
+
   public static void main(String[] args) {
 	  
     final Display display = new Display();
@@ -28,8 +32,8 @@ static List<String> old_active_box_list = new ArrayList<String>();
     //shell.setSize(1500,900);
     shell.setMaximized(true);
     
-    final Composite composite1 = new Composite(shell, SWT.BORDER);
-	composite1.setBackground(display.getSystemColor(SWT.COLOR_GREEN));
+    composite1 = new Composite(shell, SWT.BORDER);
+	//composite1.setBackground(display.getSystemColor(SWT.COLOR_GREEN));
 	RowLayout rowLayout1 = new RowLayout();
 	rowLayout1.center = true;
 	rowLayout1.spacing = 30;
@@ -37,11 +41,11 @@ static List<String> old_active_box_list = new ArrayList<String>();
 	composite1.setLayout(rowLayout1);
     setComposite1Title(composite1);
     
-    final Composite composite2 = new Composite(shell,SWT.BORDER);
+    composite2 = new Composite(shell,SWT.BORDER);
     GridLayout gridLayout2 = new GridLayout();
     gridLayout2.numColumns = 4;
     composite2.setLayout(gridLayout2);
-    composite2.setBackground(display.getSystemColor(SWT.COLOR_RED));
+    //composite2.setBackground(display.getSystemColor(SWT.COLOR_RED));
     setComposite2Template(composite2);
     setIds(composite2);
     //composite2.pack();
@@ -65,8 +69,12 @@ static List<String> old_active_box_list = new ArrayList<String>();
             	if (composite2.isDisposed())
             		return;
             	try {
-					updateBoxList(composite1,composite2);
+            		List<String> activeBoxes = updateBoxList(composite1,composite2);
+            		doLogic(id_text.getText());
 				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (MqttException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -82,7 +90,7 @@ static List<String> old_active_box_list = new ArrayList<String>();
     display.dispose();
   }
   
-  public static void updateBoxList(Composite composite1, Composite composite2) throws SQLException {
+  public static List<String> updateBoxList(Composite composite1, Composite composite2) throws SQLException {
 	  final Composite comp2 = composite2;
 	  //List<String> new_active_box_list = getOnlineBoxes();
 	  List<String> new_active_box_list = getActiveBoxes();
@@ -129,6 +137,7 @@ static List<String> old_active_box_list = new ArrayList<String>();
 		//canvas.pack();
 		//canvas.setSize(683,1000);
 		composite1.layout(true);
+	  
 	  }
 	  
 	  for(Integer i=0; i<deactived_box_list.size(); i++) {
@@ -156,6 +165,8 @@ static List<String> old_active_box_list = new ArrayList<String>();
 			  }
 		  }
 	  }
+
+	return new_active_box_list;
   }
 
   public static void showDetails(int id, Composite composite2) throws MqttException, SQLException {
@@ -173,7 +184,7 @@ static List<String> old_active_box_list = new ArrayList<String>();
 			  	break;
 			  	case 6: 
 			  	Float temp = readTemperature(String.valueOf(id));
-				((Text) e).setText(String.valueOf(temp));
+				((Text) e).setText(String.valueOf(temp));			  	
 				break;
 			  	case 8: 
 			  	Float humidity = readHumidity(String.valueOf(id));
@@ -214,7 +225,7 @@ static List<String> old_active_box_list = new ArrayList<String>();
 		RowLayout labelCompLayout = new RowLayout();
 		labelCompLayout.marginWidth = 300;
 		label_composite.setLayout(labelCompLayout);
-		label_composite.setBackground(composite1.getDisplay().getSystemColor(SWT.COLOR_GREEN));
+		//label_composite.setBackground(composite1.getDisplay().getSystemColor(SWT.COLOR_GREEN));
 		
 		final Label composite_title = new Label(label_composite, SWT.NONE);
 		composite_title.setText("ACTIVE BOXES");
@@ -240,7 +251,7 @@ static List<String> old_active_box_list = new ArrayList<String>();
       final Label id = new Label(composite2,SWT.NONE);
       id.setText("BOX ID");
       id.setFont(font);
-	  final Text id_text = new Text(composite2, SWT.SINGLE | SWT.BORDER);
+	  id_text = new Text(composite2, SWT.SINGLE | SWT.BORDER);
       GridData gridData2 = new GridData();
       gridData2.horizontalSpan = 3;
       id_text.setLayoutData(gridData2); 
@@ -627,12 +638,15 @@ static List<String> old_active_box_list = new ArrayList<String>();
   public static String setWindler(String id,String com) throws MqttException, SQLException {
 	  boolean state;
 	  if(com.equals("ON")){
+		  DbInterface.setWindler(id, true);
 		  setFunction.setWindler(id,true);
 	  }
 	  else{
 		  setFunction.setWindler(id, false);
+		  DbInterface.setWindler(id, false);
 	  }
 	  state = DbInterface.getWindler(id);
+	  System.out.println(Boolean.toString(state));
 	  if(state) {
 		  return "ON";
 	  }
@@ -644,9 +658,11 @@ static List<String> old_active_box_list = new ArrayList<String>();
   public static String setDisplay(String id, String com) throws SQLException, MqttException {
 	  boolean state;
 	  if(com.equals("ON")){
+		  DbInterface.setDisplay(id, true);
 		  setFunction.setDisplay(id,true);
 	  }
 	  else{
+		  DbInterface.setDisplay(id, false);
 		  setFunction.setDisplay(id, false);
 	  }
 	  state = DbInterface.getDisplay(id);
@@ -661,12 +677,15 @@ static List<String> old_active_box_list = new ArrayList<String>();
   public static String setAlarm(String id, String com) throws SQLException, MqttException {
 	  Boolean state;
 	  if(com.equals("ON")){
+		  DbInterface.setAlarm(id, true);
 		  setFunction.setAlarm(id, true);
 	  }
 	  else{
+		  DbInterface.setAlarm(id, false);
 		  setFunction.setAlarm(id, false);
 	  }
 	  state = DbInterface.getAlarm(id);
+	  
 	  if(state) {
 		  return "ON";
 	  }
@@ -690,5 +709,14 @@ static List<String> old_active_box_list = new ArrayList<String>();
 	  DbInterface.setWaterQnt(id,toStr);
 	  return DbInterface.getWaterQnt(id);
   }
+  
+  
+  public static void doLogic(String id) throws SQLException, MqttException {
+	  
+		readFunction.readAll(id);
+  
+  }
+
+
 }
 

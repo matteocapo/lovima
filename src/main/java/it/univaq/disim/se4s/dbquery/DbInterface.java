@@ -266,7 +266,7 @@ public class DbInterface {
 	  Connection connection = connector();
 
 	  Float temp = null;
-	  String query = "SELECT `temp` FROM `boxes` WHERE `id_box`= '"+id+"' ORDER BY id ASC LIMIT 1";
+	  String query = "SELECT `temp` FROM `boxes` WHERE `id_box`= '"+id+"' ORDER BY id DESC LIMIT 1";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -854,6 +854,13 @@ public class DbInterface {
 	  
   }
   
+  public static int boolToInt(boolean value) {
+	  if(value)
+		  return 1;
+	  else
+		  return 0;
+  }
+  
   public static void setAll(String id, Float humidity, Float temp, int light, Boolean alarm, Boolean display,Boolean windler, String idanimal, String type) throws SQLException {
 	  
 		Connection connection = connector();
@@ -861,8 +868,8 @@ public class DbInterface {
 		  try {
 			  Statement stmt = connection.createStatement();
 			  try {
-				  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`id`, `humidity`, `temp`, `light`, `alarm`, `display`, `windler`, `idAnimals`, `type`) "
-					  		+ "values('"+id+"', '"+humidity+"', '"+temp+"', '"+light+"', '"+alarm+"', '"+display+"', '"+windler+"', '"+idanimal+"', '"+type+"')");
+				  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`id_box`, `humidity`, `temp`, `light`, `alarm`, `display`, `windler`, `idAnimals`, `type`) "
+					  		+ "values('"+id+"', '"+temp+"', '"+humidity+"', '"+light+"', '"+boolToInt(alarm)+"', '"+boolToInt(display)+"', '"+boolToInt(windler)+"', '"+idanimal+"', '"+type+"')");
 				  //stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`foodQnt`, `id_box`) values('"+value+"', '"+id+"')"); 
 				  stmt.close(); 	  connection.close();
 				  System.out.println("query riuscita");
