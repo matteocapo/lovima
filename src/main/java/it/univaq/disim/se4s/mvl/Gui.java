@@ -34,16 +34,24 @@ static List<String> old_active_box_list = new ArrayList<String>();
     
     composite1 = new Composite(shell, SWT.BORDER);
 	//composite1.setBackground(display.getSystemColor(SWT.COLOR_GREEN));
-	RowLayout rowLayout1 = new RowLayout();
-	rowLayout1.center = true;
-	rowLayout1.spacing = 30;
-	rowLayout1.marginBottom =30;
-	composite1.setLayout(rowLayout1);
+    GridLayout gridLayout1 = new GridLayout();
+    gridLayout1.numColumns = 4;
+    gridLayout1.marginBottom = 30;
+    gridLayout1.horizontalSpacing = 50;
+    gridLayout1.verticalSpacing = 40;
+    composite1.setLayout(gridLayout1);
+	//RowLayout rowLayout1 = new RowLayout();
+	//rowLayout1.center = true;
+	//rowLayout1.spacing = 30;
+	//rowLayout1.marginBottom =30;
+	//composite1.setLayout(rowLayout1);
     setComposite1Title(composite1);
     
     composite2 = new Composite(shell,SWT.BORDER);
     GridLayout gridLayout2 = new GridLayout();
     gridLayout2.numColumns = 4;
+    gridLayout2.horizontalSpacing = 50;
+    gridLayout2.verticalSpacing = 20;
     composite2.setLayout(gridLayout2);
     //composite2.setBackground(display.getSystemColor(SWT.COLOR_RED));
     setComposite2Template(composite2);
@@ -221,17 +229,20 @@ static List<String> old_active_box_list = new ArrayList<String>();
   
   public static void setComposite1Title(Composite composite1) {
 	  
-	  final Composite label_composite = new Composite(composite1, SWT.NONE);
-		RowLayout labelCompLayout = new RowLayout();
-		labelCompLayout.marginWidth = 300;
-		label_composite.setLayout(labelCompLayout);
+	  	//final Composite label_composite = new Composite(composite1, SWT.NONE);
+		//RowLayout labelCompLayout = new RowLayout();
+		//labelCompLayout.marginWidth = 300;
+		//label_composite.setLayout(labelCompLayout);
 		//label_composite.setBackground(composite1.getDisplay().getSystemColor(SWT.COLOR_GREEN));
 		
-		final Label composite_title = new Label(label_composite, SWT.NONE);
+		final Label composite_title = new Label(composite1, SWT.NONE);
 		composite_title.setText("ACTIVE BOXES");
 		FontData fontData = composite_title.getFont().getFontData()[0];
 		Font font = new Font(composite1.getDisplay(), new FontData(fontData.getName(), fontData.getHeight(), SWT.BOLD));
 		composite_title.setFont(font);
+		GridData gridData = new GridData(SWT.CENTER, SWT.FILL, true, false);
+		gridData.horizontalSpan = 4;
+	    composite_title.setLayoutData(gridData);
 	  
   }
   
@@ -245,8 +256,10 @@ static List<String> old_active_box_list = new ArrayList<String>();
 	  composite_title.setFont(font);
 	  GridData gridData = new GridData(SWT.CENTER, SWT.FILL, true, false);
 	  gridData.horizontalSpan = 4;
+	  //gridData.verticalSpan = 2;
+	  gridData.grabExcessHorizontalSpace = true;
       composite_title.setLayoutData(gridData);
-	  
+      
       // setta il campo id
       final Label id = new Label(composite2,SWT.NONE);
       id.setText("BOX ID");
