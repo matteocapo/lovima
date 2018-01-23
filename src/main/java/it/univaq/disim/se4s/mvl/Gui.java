@@ -5,6 +5,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.*;
 import org.eclipse.swt.widgets.*;
 
+import it.univaq.disim.se4s.dbquery.DbAnimalsInterface;
 import it.univaq.disim.se4s.dbquery.DbInterface;
 import it.univaq.disim.se4s.mqttfunction.readFunction;
 import it.univaq.disim.se4s.mqttfunction.setFunction;
@@ -15,6 +16,7 @@ import java.awt.image.DataBufferInt;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Gui {
 
@@ -739,17 +741,45 @@ static List<String> old_active_box_list = new ArrayList<String>();
 	  //valori di default, non toccare
 	  boolean alarmMustBeEnabled = false;
 	  boolean windlerMustBeEnabled = false;
+	  boolean displayMustBeEnabled = false;
+	  
+	  //dizionario contenente i dati relativi all'animale da dover tenere sotto controllo
+	  Map<String, String> dict = DbAnimalsInterface.getAllAnimalInfo(DbInterface.getIdAnimal(id));
+	  Integer nAnimals = DbInterface.getAnimalsN(id);
+	  Integer totFood = nAnimals*Integer.parseInt((dict.get("foodDoses")));
+	  Double totWater = nAnimals.doubleValue()*500;
+	  Float maxTemp = Float.parseFloat(dict.get("maxTemp"));
+	  Float minTemp = Float.parseFloat(dict.get("minTemp"));
+	  Float maxHum = Float.parseFloat(dict.get("maxhum"));
+	  Float minHum = Float.parseFloat(dict.get("minhum"));
+	  Float tempMax = (float) 40.1;
+	  Float lightMax = (float) 500;
+	  
 	  
 	  //water and food alarm management
-	  if(DbInterface.getFoodQnt(id) <= 0 || DbInterface.getWaterQnt(id) <= 0) {
+	  if(DbInterface.getFoodQnt(id) <= totFood || DbInterface.getWaterQnt(id) <= totWater) {
 		  alarmMustBeEnabled = true;
 	  }
 	  
 	  //themperature management windler
-	  if(DbInterface.getThemperature(id) >= 22) {
+	  if(DbInterface.getThemperature(id) <= minTemp) {
+		  displayMustBeEnabled = true;
+	  }else if (DbInterface.getThemperature(id) >= maxTemp) {
 		  windlerMustBeEnabled = true;
 	  }
 
+	  if(DbInterface.getThemperature(id) >= tempMax || DbInterface.getLight(id) >= lightMax) {
+		  alarmMustBeEnabled = true;
+		  windlerMustBeEnabled = true;
+	  }
+	  
+	  if(DbInterface.getHumidity(id) <= minHum) {
+		  displayMustBeEnabled = true;
+	  }else if(DbInterface.getHumidity(id) >= maxHum) {
+		  windlerMustBeEnabled = true;
+	  }
+	  
+	  
 	
 	  //non toccare le funzioni qua sotto!!!!
 	  if(alarmMustBeEnabled && !DbInterface.getAlarm(id))
@@ -761,7 +791,13 @@ static List<String> old_active_box_list = new ArrayList<String>();
 		  setFunction.setWindler(id, true);
 	  else if(!windlerMustBeEnabled && DbInterface.getWindler(id))
 		  setFunction.setWindler(id, false);
-  }
+	  
+	  if(displayMustBeEnabled && !DbInterface.getDisplay(id))
+		  setFunction.setDisplay(id, true);
+	  else if(!displayMustBeEnabled && DbInterface.getDisplay(id))
+		  setFunction.setDisplay(id, false);
+	  
+  	}
 
 
 }
