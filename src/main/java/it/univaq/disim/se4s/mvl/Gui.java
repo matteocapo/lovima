@@ -747,17 +747,16 @@ static List<String> old_active_box_list = new ArrayList<String>();
 	  Map<String, String> dict = DbAnimalsInterface.getAllAnimalInfo(DbInterface.getIdAnimal(id));
 	  Integer nAnimals = DbInterface.getAnimalsN(id);
 	  Integer totFood = nAnimals*Integer.parseInt((dict.get("foodDoses")));
-	  Double totWater = nAnimals.doubleValue()*500;
+	  Double totWater = nAnimals.doubleValue()*100;
 	  Float maxTemp = Float.parseFloat(dict.get("maxTemp"));
 	  Float minTemp = Float.parseFloat(dict.get("minTemp"));
 	  Float maxHum = Float.parseFloat(dict.get("maxhum"));
 	  Float minHum = Float.parseFloat(dict.get("minhum"));
 	  Float tempMax = (float) 40.1;
-	  Float lightMax = (float) 500;
-	  
-	  
+	  Float lightMax = (float) 650;
+	  	  
 	  //water and food alarm management
-	  if(DbInterface.getFoodQnt(id) <= totFood || DbInterface.getWaterQnt(id) <= totWater) {
+	  if(DbInterface.getFoodQnt(id) <= (double) totFood || DbInterface.getWaterQnt(id) <= totWater) {
 		  alarmMustBeEnabled = true;
 	  }
 	  

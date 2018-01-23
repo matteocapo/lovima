@@ -15,6 +15,13 @@ import java.util.HashMap;
 
 public class DbInterface {
   
+	  public static boolean stringToBool(String value) {
+		  if(value.equals("1"))
+			  return true;
+		  else
+			  return false;
+	  }
+	
   public static Connection connector() {
 
 		try {
@@ -868,15 +875,27 @@ public class DbInterface {
 		  try {
 			  Statement stmt = connection.createStatement();
 			  try {
-				  Double curWater = getWaterQnt(id);
-				  Double curFood = getFoodQnt(id);
+				  Double curWater = 200.0;
+				  Double curFood = 200.0;
+				  try {
+					  curWater = getWaterQnt(id);
+					  curFood = getFoodQnt(id);
+				  }
+				  catch(Exception e) {
+					  
+				  }
+				  
+				  if(curWater == null)
+					  curWater = 200.0;
+				  if(curFood == null)
+					  curFood = 200.0;
 				  
 				  stmt.executeUpdate("INSERT INTO `se4asdb`.`active_boxes`(`id_box`) VALUES ('"+id+"')");
-				  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`id_box`, `humidity`, `temp`, `light`, `alarm`, `display`, `windler`, `idAnimals`, `type`, `foodQnt`, `waterQnt`) "
+
+				  int h = stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`id_box`, `humidity`, `temp`, `light`, `alarm`, `display`, `windler`, `idAnimals`, `type`, `foodQnt`, `waterQnt`) "
 					  		+ "values('"+id+"', '"+temp+"', '"+humidity+"', '"+light+"', '"+boolToInt(alarm)+"', '"+boolToInt(display)+"', '"+boolToInt(windler)+"', '"+idanimal+"', '"+type+"', '"+curFood+"', '"+curWater+"')");
 				  //stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`foodQnt`, `id_box`) values('"+value+"', '"+id+"')"); 
 				  stmt.close(); 	  connection.close();
-				  System.out.println("query riuscita");
 			  }
 			  catch (Exception e) {
 				  System.out.println(e);

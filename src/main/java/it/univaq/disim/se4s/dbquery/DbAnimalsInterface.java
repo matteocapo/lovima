@@ -92,7 +92,7 @@ public class DbAnimalsInterface {
 
 	  String query = "SELECT * FROM `animals` WHERE `id_animal`= '"+id+"' ORDER BY id DESC LIMIT 1";
 
-	  
+	  //System.err.println(id);
 	  try {
 		  Statement stmt = connection.createStatement();
 		  try {
@@ -100,7 +100,7 @@ public class DbAnimalsInterface {
 			  ResultSet rs = stmt.executeQuery(query);
 			  while (rs.next()) {
 				  
-				  diz.put("idAnimal", rs.getString("idAnimal"));
+				  diz.put("id_animal", rs.getString("id_animal"));
 				  diz.put("type", rs.getString("type"));
 				  diz.put("species", rs.getString("species"));
 				  diz.put("sex", rs.getString("sex"));
