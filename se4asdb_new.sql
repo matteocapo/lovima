@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Creato il: Gen 23, 2018 alle 15:10
+-- Creato il: Gen 23, 2018 alle 17:37
 -- Versione del server: 5.5.42
 -- Versione PHP: 5.6.10
 
@@ -38,11 +38,20 @@ CREATE TABLE `animals` (
   `species` varchar(30) CHARACTER SET utf8 DEFAULT '0',
   `sex` varchar(5) CHARACTER SET utf8 DEFAULT '0',
   `maxNPost` int(11) DEFAULT '0',
-  `minTemp` int(11) DEFAULT '0',
   `food` int(11) DEFAULT '0',
   `foodDoses` int(11) DEFAULT '0',
-  `maxTemp` float DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `minTemp` float DEFAULT '0',
+  `maxTemp` float DEFAULT '0',
+  `minhum` float NOT NULL DEFAULT '0',
+  `maxhum` float NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `animals`
+--
+
+INSERT INTO `animals` (`id`, `id_animal`, `type`, `species`, `sex`, `maxNPost`, `food`, `foodDoses`, `minTemp`, `maxTemp`, `minhum`, `maxhum`) VALUES
+(1, '1', 'viper', 'snake', 'm', 4, 10, 10, 10, 30, 40, 90);
 
 -- --------------------------------------------------------
 
@@ -124,7 +133,7 @@ ALTER TABLE `active_boxes`
 -- AUTO_INCREMENT per la tabella `animals`
 --
 ALTER TABLE `animals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT per la tabella `boxes`
 --

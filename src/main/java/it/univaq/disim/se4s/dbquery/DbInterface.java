@@ -889,6 +889,42 @@ public class DbInterface {
 				  }	
 		  connection.close(); 
 	}
+  
+  public static String getIdAnimal(String id) throws SQLException {
+	  Connection connection = connector();
+
+	  String idAnimal = null;
+	  String query = "SELECT `idAnimals` FROM `boxes` WHERE `id_box`= '"+id+"' ORDER BY id DESC LIMIT 1";
+	  
+	  try {
+		  Statement stmt = connection.createStatement();
+		  try {
+			  
+			  ResultSet rs = stmt.executeQuery(query);
+			  while (rs.next()) {
+				  idAnimal = rs.getString("idAnimals");
+			  }
+
+			  System.out.println("query riuscita");
+			  
+			  stmt.close(); 	  
+			  connection.close();
+			  return idAnimal;
+			  
+		  }
+		  catch (Exception e) {
+			  e.getStackTrace();
+			  System.out.println(e);
+			  System.out.println("Errore query");
+		}
+	  }
+	  catch (SQLException e) {
+			  System.out.println("Errore Statment");
+			  e.printStackTrace();
+			  }	
+	  connection.close();
+	  return idAnimal;
+  }
 	
 }
 

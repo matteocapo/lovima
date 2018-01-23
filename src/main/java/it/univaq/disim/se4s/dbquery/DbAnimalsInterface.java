@@ -47,27 +47,6 @@ public class DbAnimalsInterface {
 		}
 	}
   
-  public static void querygenerica() {
-	  Connection connection = connector();
-	  try {
-		  Statement stmt = connection.createStatement();
-		  try {
-			  stmt.executeUpdate( "INSERT INTO `se4asdb`.`boxs` (`id`, `idMqtt`, `idAnimals`, `dateTime`, `animalsN`, `Temp`, `foodQnt`, `waterQnt`, `light`, `humidity`) VALUES ('2', '2', '2', '2018-01-02', '2', '24.5', '30', '40', '10', '15.4');" ); 
-			  System.out.println("query riuscita");
-			  stmt.close(); 	  
-			  connection.close();
-
-		  }
-		  catch (Exception e) {
-			  System.out.println(e);
-			  System.out.println("Errore query");
-		}
-	  }
-	  catch (SQLException e) {
-			  System.out.println("Errore Statment");
-			  e.printStackTrace();
-			  }	
-	  }
   
     
   public static int boolToInt(boolean value) {
@@ -76,7 +55,7 @@ public class DbAnimalsInterface {
 	  else
 		  return 0;
   }
-  
+  /*
   public static void setAll(String id, String type, String species, String sex, Integer maxNPos, Float minTemp, Float maxTemp, Integer food, String foodDoses) throws SQLException {
 	  
 		Connection connection = connector();
@@ -103,8 +82,9 @@ public class DbAnimalsInterface {
 				  }	
 		  connection.close(); 
 	}
+	*/
   
-  public static Map<String, String> getAll(String id) throws SQLException {
+  public static Map<String, String> getAllAnimalInfo(String id) throws SQLException {
 		 
 	  Map<String, String> diz = new HashMap<String, String>();
 	  
@@ -125,10 +105,13 @@ public class DbAnimalsInterface {
 				  diz.put("species", rs.getString("species"));
 				  diz.put("sex", rs.getString("sex"));
 				  diz.put("maxNPost", rs.getString("maxNPost"));
-				  diz.put("minTemp", rs.getString("minTemp"));
 				  diz.put("food", rs.getString("food"));
 				  diz.put("foodDoses", rs.getString("foodDoses"));
+				  diz.put("minTemp", rs.getString("minTemp"));
 				  diz.put("maxTemp", rs.getString("maxTemp"));
+				  diz.put("minhum", rs.getString("minhum"));
+				  diz.put("maxhum", rs.getString("maxhum"));
+
 			  }
 			  System.out.println("query riuscita");
 			  
