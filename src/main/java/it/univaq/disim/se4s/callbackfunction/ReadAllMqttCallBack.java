@@ -19,22 +19,42 @@ public class ReadAllMqttCallBack implements MqttCallback {
 		System.out.println("Connessione persa!");
 		}
 
+	  public static int boolToInt(boolean value) {
+		  if(value)
+			  return 1;
+		  else
+			  return 0;
+	  }
+	  
+	  public static boolean stringToBool(String value) {
+		  if(value.equals("1"))
+			  return true;
+		  else
+			  return false;
+	  }
+	
 	public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
 		
 		String stringa = mqttMessage.toString();
 		String [] splits = stringa.split("\\ ");
 		
 		String id = splits[0];
+		try {
 		Float humidity = Float.parseFloat(splits[1]);
 		Float temp =  Float.parseFloat(splits[2]);
 		int light = Integer.parseInt(splits[3]);
-		Boolean alarm = Boolean.parseBoolean(splits[4]);
-		Boolean display = Boolean.parseBoolean(splits[5]);
-		Boolean windler = Boolean.parseBoolean(splits[6]);
+		Boolean alarm = stringToBool(splits[4]);
+		Boolean display = stringToBool(splits[5]);
+		Boolean windler = stringToBool(splits[6]);
 		String idanimal = splits[7];
 		String type = splits[8];
 		DbInterface.setAll(id, humidity, temp, light, alarm, display, windler, idanimal, type);
-		client.disconnect();
+
+		}
+		catch(Exception e) {
+			DbInterface.deleteOnlineBox(id);
+		}
+		//client.disconnect();
 		
 	}
 

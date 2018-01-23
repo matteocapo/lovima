@@ -11,6 +11,7 @@ import it.univaq.disim.se4s.mqttfunction.setFunction;
 
 import org.eclipse.swt.layout.*;
 
+import java.awt.image.DataBufferInt;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +59,14 @@ static List<String> old_active_box_list = new ArrayList<String>();
     setIds(composite2);
     //composite2.pack();
     
+    //START LISTENING
+	try {
+		readFunction.readAll();
+	} catch (MqttException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+    
     shell.open();
     new Thread() {
       public void run() {
@@ -77,12 +86,14 @@ static List<String> old_active_box_list = new ArrayList<String>();
             	if (composite2.isDisposed())
             		return;
             	try {
+            		
             		List<String> activeBoxes = updateBoxList(composite1,composite2);
-            		doLogic(id_text.getText());
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (MqttException e) {
+
+            		if(id_text.getText() != null && id_text.getText() != "") {
+            			showDetails(id_text.getText(), composite2);
+            			doLogic(id_text.getText());
+            		}
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -121,7 +132,7 @@ static List<String> old_active_box_list = new ArrayList<String>();
 			  
 		//contenuto del blocco: ID della teca, tipo di animali contenuti e bottone per vedere i dettagli
 		final Label label1 = new Label(block, SWT.NONE);
-		final int id = Integer.parseInt(new_active_box_list.get(i));
+		final String id = new_active_box_list.get(i);
 		label1.setText("ID: " + id);
 		final Label label2 = new Label(block, SWT.NONE);
 		label2.setText("Animal Type: ");
@@ -177,49 +188,49 @@ static List<String> old_active_box_list = new ArrayList<String>();
 	return new_active_box_list;
   }
 
-  public static void showDetails(int id, Composite composite2) throws MqttException, SQLException {
+  public static void showDetails(String id, Composite composite2) throws MqttException, SQLException {
 	  Control[] children = composite2.getChildren();
 	  for(Control e : children) {
 		  if(e instanceof Text) {
 			  Integer text_box_id = ((Integer)e.getData()).intValue();
 			  switch(text_box_id) {
 			  	case 2:
-			  	((Text) e).setText(String.valueOf(id));
+			  	((Text) e).setText(id);
 			  	break;
 			  	case 4: 
-			  	Integer number = askAnimalNumber(String.valueOf(id));
+			  	Integer number = askAnimalNumber(id);
 			  	((Text) e).setText(String.valueOf(number));
 			  	break;
 			  	case 6: 
-			  	Float temp = readTemperature(String.valueOf(id));
+			  	Float temp = readTemperature(id);
 				((Text) e).setText(String.valueOf(temp));			  	
 				break;
 			  	case 8: 
-			  	Float humidity = readHumidity(String.valueOf(id));
+			  	Float humidity = readHumidity(id);
 				((Text) e).setText(String.valueOf(humidity));
 			  	break;
 			  	case 10:
-			  	Integer light = readLight(String.valueOf(id));
+			  	Integer light = readLight(id);
 				((Text) e).setText(String.valueOf(light));
 			  	break;
 			  	case 12:
-			  	String windler_state = readWindler(String.valueOf(id));
+			  	String windler_state = readWindler(id);
 				((Text) e).setText(windler_state);
 			  	break;
 			  	case 16:
-			  	String display_state = readDisplay(String.valueOf(id));
+			  	String display_state = readDisplay(id);
 				((Text) e).setText(display_state);
 			  	break;
 			  	case 20:
-			  	String alarm_state = readAlarm(String.valueOf(id));
+			  	String alarm_state = readAlarm(id);
 				((Text) e).setText(alarm_state);
 			  	break;
 			  	case 24:
-			  	Double food = askAnimalFood(String.valueOf(id));
+			  	Double food = askAnimalFood(id);
 				((Text) e).setText(String.valueOf(food));
 			  	break;
 			  	case 28:
-			  	Double water = askAnimalWater(String.valueOf(id));
+			  	Double water = askAnimalWater(id);
 				((Text) e).setText(String.valueOf(water));
 				break;
 			  }
@@ -579,7 +590,7 @@ static List<String> old_active_box_list = new ArrayList<String>();
   // da implementare...le funzioni qui sotto tornano valori relativi alle varie 
   // informazioni sulla teca da prendere sul db tramite mqtt
   public static Float readTemperature(String id) throws SQLException, MqttException {
-	  readFunction.readThemperature(id);
+	  //readFunction.readThemperature(id);
 	  Float temp = DbInterface.getThemperature(id);
 	  return temp;
   }
@@ -590,20 +601,20 @@ static List<String> old_active_box_list = new ArrayList<String>();
   }
   
   public static Float readHumidity(String id) throws MqttException, SQLException {
-	  readFunction.readHumidity(id);
+	  //readFunction.readHumidity(id);
 	  Float hum = DbInterface.getHumidity(id);
 	  return hum;
   }
   
   public static Integer readLight(String id) throws MqttException, SQLException {
-	  readFunction.readLight(id);
+	  //readFunction.readLight(id);
 	  Integer luce = DbInterface.getLight(id);
 	  return luce;
   }
   
   public static String readWindler(String id) throws MqttException, SQLException {
 	  //Boolean state = false;
-	  readFunction.readWindler(id);
+	  //readFunction.readWindler(id);
 	  Boolean state = DbInterface.getWindler(id);
 	  if(state == true) {
 		  return "ON";
@@ -615,7 +626,7 @@ static List<String> old_active_box_list = new ArrayList<String>();
   
   public static String readDisplay(String id) throws MqttException, SQLException {
 	  //Boolean state = false;
-	  readFunction.readDisplay(id);
+	  //readFunction.readDisplay(id);
 	  Boolean state = DbInterface.getDisplay(id);
 	  if(state == true) {
 		  return "ON";
@@ -627,7 +638,7 @@ static List<String> old_active_box_list = new ArrayList<String>();
   
   public static String readAlarm(String id) throws MqttException, SQLException {
 	  //Boolean state = false;
-	  readFunction.readAlarm(id);
+	  //readFunction.readAlarm(id);
 	  Boolean state = DbInterface.getAlarm(id);
 	  if(state == true) {
 		  return "ON";
@@ -725,9 +736,31 @@ static List<String> old_active_box_list = new ArrayList<String>();
   
   
   public static void doLogic(String id) throws SQLException, MqttException {
+	  //valori di default, non toccare
+	  boolean alarmMustBeEnabled = false;
+	  boolean windlerMustBeEnabled = false;
 	  
-		readFunction.readAll(id);
-  
+	  //water and food alarm management
+	  if(DbInterface.getFoodQnt(id) <= 0 || DbInterface.getWaterQnt(id) <= 0) {
+		  alarmMustBeEnabled = true;
+	  }
+	  
+	  //themperature management windler
+	  if(DbInterface.getThemperature(id) >= 22) {
+		  windlerMustBeEnabled = true;
+	  }
+
+	
+	  //non toccare le funzioni qua sotto!!!!
+	  if(alarmMustBeEnabled && !DbInterface.getAlarm(id))
+		  setFunction.setAlarm(id, true);
+	  else if(!alarmMustBeEnabled && DbInterface.getAlarm(id))
+		  setFunction.setAlarm(id, false);
+	  
+	  if(windlerMustBeEnabled && !DbInterface.getWindler(id))
+		  setFunction.setWindler(id, true);
+	  else if(!windlerMustBeEnabled && DbInterface.getWindler(id))
+		  setFunction.setWindler(id, false);
   }
 
 

@@ -22,8 +22,8 @@ public class App {
 		//System.out.println("fine");
 		//whoIsFunction.whoIs();
 		//readFunction.readThemperature("25");
-		DbInterface.setFoodQnt("25", "50");
-		DbInterface.setHumidity("25", (float) 23.6);
+		//DbInterface.setFoodQnt("25", "50");
+		//DbInterface.setHumidity("25", (float) 23.6);
 
 	}
 

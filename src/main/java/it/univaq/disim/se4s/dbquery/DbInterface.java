@@ -478,7 +478,7 @@ public class DbInterface {
 
 	  List<String> onlinebxes = new ArrayList<String>();
 	  
-	  String query = "SELECT `id_box` FROM `active_boxes`";
+	  String query = "SELECT DISTINCT `id_box` FROM `active_boxes`";
 	  
 	  try {
 		  Statement stmt = connection.createStatement();
@@ -868,8 +868,12 @@ public class DbInterface {
 		  try {
 			  Statement stmt = connection.createStatement();
 			  try {
-				  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`id_box`, `humidity`, `temp`, `light`, `alarm`, `display`, `windler`, `idAnimals`, `type`) "
-					  		+ "values('"+id+"', '"+temp+"', '"+humidity+"', '"+light+"', '"+boolToInt(alarm)+"', '"+boolToInt(display)+"', '"+boolToInt(windler)+"', '"+idanimal+"', '"+type+"')");
+				  Double curWater = getWaterQnt(id);
+				  Double curFood = getFoodQnt(id);
+				  
+				  stmt.executeUpdate("INSERT INTO `se4asdb`.`active_boxes`(`id_box`) VALUES ('"+id+"')");
+				  stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`id_box`, `humidity`, `temp`, `light`, `alarm`, `display`, `windler`, `idAnimals`, `type`, `foodQnt`, `waterQnt`) "
+					  		+ "values('"+id+"', '"+temp+"', '"+humidity+"', '"+light+"', '"+boolToInt(alarm)+"', '"+boolToInt(display)+"', '"+boolToInt(windler)+"', '"+idanimal+"', '"+type+"', '"+curFood+"', '"+curWater+"')");
 				  //stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`foodQnt`, `id_box`) values('"+value+"', '"+id+"')"); 
 				  stmt.close(); 	  connection.close();
 				  System.out.println("query riuscita");

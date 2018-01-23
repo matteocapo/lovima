@@ -32,7 +32,7 @@ public class readFunction{
 	    client.subscribe(topicout);
 		return topic1;
 	}
-	
+	/*
 	//funzione per leggere la temperatura
 	public static void readThemperature(String id) throws MqttException {
 		MqttClient client = connection();
@@ -117,8 +117,8 @@ public class readFunction{
 	    MqttMessage     publication = new MqttMessage(message.getBytes());
 	    topic.publish(publication);
 	}
-	
-	public static void readAll(String id) throws MqttException {
+	*/
+	public static void readAll() throws MqttException {
 		
 		MqttClient client = connection();
 		MqttTopic topic = addTopicin(client);
@@ -127,10 +127,11 @@ public class readFunction{
 		ReadAllMqttCallBack mqttCall = new ReadAllMqttCallBack(client);
 		client.setCallback(mqttCall);
 		
-		String     message  = id+" readAll";
-	    MqttMessage     publication = new MqttMessage(message.getBytes());
-	    topic.publish(publication);
+		//String     message  = id+" readAll";
+	    //MqttMessage     publication = new MqttMessage(message.getBytes());
+	    //topic.publish(publication);
 		
 	}
+	
 	
 }
