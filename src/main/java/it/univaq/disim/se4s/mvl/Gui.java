@@ -213,39 +213,39 @@ static List<String> old_active_box_list = new ArrayList<String>();
 			  	case 2:
 			  	((Text) e).setText(id);
 			  	break;
-			  	case 4: 
+			  	case 5: 
 			  	Integer number = askAnimalNumber(id);
 			  	((Text) e).setText(String.valueOf(number));
 			  	break;
-			  	case 6: 
+			  	case 7: 
 			  	Float temp = readTemperature(id);
 				((Text) e).setText(String.valueOf(temp));			  	
 				break;
-			  	case 8: 
+			  	case 9: 
 			  	Float humidity = readHumidity(id);
 				((Text) e).setText(String.valueOf(humidity));
 			  	break;
-			  	case 10:
+			  	case 11:
 			  	Integer light = readLight(id);
 				((Text) e).setText(String.valueOf(light));
 			  	break;
-			  	case 12:
+			  	case 13:
 			  	String windler_state = readWindler(id);
 				((Text) e).setText(windler_state);
 			  	break;
-			  	case 16:
+			  	case 17:
 			  	String display_state = readDisplay(id);
 				((Text) e).setText(display_state);
 			  	break;
-			  	case 20:
+			  	case 21:
 			  	String alarm_state = readAlarm(id);
 				((Text) e).setText(alarm_state);
 			  	break;
-			  	case 24:
+			  	case 25:
 			  	Double food = askAnimalFood(id);
 				((Text) e).setText(String.valueOf(food));
 			  	break;
-			  	case 28:
+			  	case 29:
 			  	Double water = askAnimalWater(id);
 				((Text) e).setText(String.valueOf(water));
 				break;
@@ -292,9 +292,24 @@ static List<String> old_active_box_list = new ArrayList<String>();
       id.setText("BOX ID");
       id.setFont(font);
 	  id_text = new Text(composite2, SWT.SINGLE | SWT.BORDER);
-      GridData gridData2 = new GridData();
+      final Button exportData = new Button(composite2, SWT.PUSH);
+      exportData.setText("EXPORT DATA");
+      exportData.addListener(SWT.Selection, new Listener() { 
+		    public void handleEvent(Event e) {
+		    	try {
+					exportCSVData(id_text.getText());
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+		    }
+      });
+      GridData exportGridData = new GridData();
+	  exportGridData.horizontalSpan = 2;
+      exportData.setLayoutData(exportGridData);
+	  
+	  GridData gridData2 = new GridData();
       gridData2.horizontalSpan = 3;
-      id_text.setLayoutData(gridData2); 
       
       // setta il campo relativo al n° di animali
       final Label animal = new Label(composite2,SWT.NONE);
@@ -506,7 +521,7 @@ static List<String> old_active_box_list = new ArrayList<String>();
       
       // setta il campo per le info sulla quantità di acqua corrente
       final Label water = new Label(composite2,SWT.NONE);
-      water.setText("WATER QUANTITY (l)");
+      water.setText("WATER QUANTITY (ml)");
       water.setFont(font);
       final Text water_text = new Text(composite2, SWT.SINGLE | SWT.BORDER);
       water_text.setText("");
@@ -805,6 +820,10 @@ static List<String> old_active_box_list = new ArrayList<String>();
 	  String toStr = String.valueOf(new_water);
 	  DbInterface.setWaterQnt(id,toStr);
 	  return DbInterface.getWaterQnt(id);
+  }
+  
+  public static void exportCSVData(String id) throws SQLException {
+	  DbInterface.getCSV(id);
   }
   
   
