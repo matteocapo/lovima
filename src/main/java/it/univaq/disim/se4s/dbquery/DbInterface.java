@@ -877,8 +877,8 @@ public class DbInterface {
 				  
 				  stmt.executeUpdate("INSERT INTO `se4asdb`.`active_boxes`(`id_box`) VALUES ('"+id+"')");
 
-				  int h = stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`id_box`, `humidity`, `temp`, `light`, `alarm`, `display`, `windler`, `idAnimals`, `type`, `foodQnt`, `waterQnt`) "
-					  		+ "values('"+id+"', '"+humidity+"', '"+temp+"', '"+light+"', '"+boolToInt(alarm)+"', '"+boolToInt(display)+"', '"+boolToInt(windler)+"', '"+idanimal+"', '"+type+"', '"+curFood+"', '"+curWater+"')");
+				  int h = stmt.executeUpdate("INSERT INTO `se4asdb`.`boxes`(`id_box`, `humidity`, `temp`, `light`, `alarm`, `display`, `windler`, `idAnimals`, `type`, `foodQnt`, `waterQnt`, `animalsN`) "
+					  		+ "values('"+id+"', '"+humidity+"', '"+temp+"', '"+light+"', '"+boolToInt(alarm)+"', '"+boolToInt(display)+"', '"+boolToInt(windler)+"', '"+idanimal+"', '"+type+"', '"+curFood+"', '"+curWater+"', '1')");
 				  stmt.close(); 	  
 				  connection.close();
 			  }

@@ -40,14 +40,14 @@ public class ReadAllMqttCallBack implements MqttCallback {
 		
 		String id = splits[0];
 		try {
-		Float humidity = Float.parseFloat(splits[1]);
-		Float temp =  Float.parseFloat(splits[2]);
+		Float humidity = Float.parseFloat(splits[2]);
+		Float temp =  Float.parseFloat(splits[1]);
 		int light = Integer.parseInt(splits[3]);
 		Boolean alarm = stringToBool(splits[4]);
 		Boolean display = stringToBool(splits[5]);
 		Boolean windler = stringToBool(splits[6]);
-		String idanimal = splits[7];
-		String type = splits[8];
+		String idanimal = splits[8];
+		String type = splits[7];
 		DbInterface.setAll(id, humidity, temp, light, alarm, display, windler, idanimal, type);
 
 		}

@@ -752,9 +752,10 @@ static List<String> old_active_box_list = new ArrayList<String>();
 	  Float minTemp = Float.parseFloat(dict.get("minTemp"));
 	  Float maxHum = Float.parseFloat(dict.get("maxhum"));
 	  Float minHum = Float.parseFloat(dict.get("minhum"));
+	  Float maxLight = (float) 950;
 	  // valori settati in locale per simulare le condizioni di un caso di incendio
 	  Float tempMax = (float) 40.1;
-	  Float lightMax = (float) 650;
+	  Float lightMax = (float) 980;
 	  	  
 	  //water and food alarm management
 	  if(DbInterface.getFoodQnt(id) <= (double) totFood || DbInterface.getWaterQnt(id) <= totWater) {
@@ -779,6 +780,11 @@ static List<String> old_active_box_list = new ArrayList<String>();
 		  windlerMustBeEnabled = true;
 	  }
 	  
+	  if(DbInterface.getLight(id) > maxLight) {
+		  displayMustBeEnabled = true;
+	  }else {
+		  displayMustBeEnabled = false;
+	  }
 	  
 	
 	  //non toccare le funzioni qua sotto!!!!
