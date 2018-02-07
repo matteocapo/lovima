@@ -2,6 +2,8 @@ package it.univaq.disim.se4s.mvl;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.*;
 import org.eclipse.swt.widgets.*;
 
@@ -25,8 +27,14 @@ static List<String> old_active_box_list = new ArrayList<String>();
 	private static Composite composite1;
 	private static Composite composite2;
 	private static Text id_text;
+	private static Canvas canvas;
+	private static int timeState;
+	private static Point[] points;
 
   public static void main(String[] args) {
+	  
+	timeState = 0;
+	points = new Point[20];
 	  
     final Display display = new Display();
     final Shell shell = new Shell(display);
@@ -94,6 +102,12 @@ static List<String> old_active_box_list = new ArrayList<String>();
             		if(id_text.getText() != null && id_text.getText() != "") {
             			showDetails(id_text.getText(), composite2);
             			doLogic(id_text.getText());
+            			
+            			canvas.redraw();
+            			
+            			timeState+=1;
+            			if(timeState>=20)
+            				timeState = 0;
             		}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -259,7 +273,7 @@ static List<String> old_active_box_list = new ArrayList<String>();
 	  
   }
   
-  public static void setComposite2Template(Composite composite2) {
+  public static void setComposite2Template(final Composite composite2) {
 	  
 	  //setta il titolo del composite
 	  final Label composite_title = new Label(composite2, SWT.NONE);
@@ -534,6 +548,63 @@ static List<String> old_active_box_list = new ArrayList<String>();
 				}
 		    }
 	  });
+      
+      Label graphic = new Label(composite2, SWT.NONE);
+      graphic.setText("LIGHT/TIME");
+      graphic.setFont(font);
+      
+      canvas = new Canvas(composite2, SWT.NONE);
+     
+      GridData gridDataCanvas = new GridData(SWT.CENTER, SWT.FILL, true, false);
+      gridDataCanvas.horizontalSpan = 4;
+      gridDataCanvas.verticalSpan = 4;
+      gridDataCanvas.heightHint = 400;
+      gridDataCanvas.widthHint = 800;
+      canvas.setLayoutData(gridDataCanvas);
+      
+      canvas.addPaintListener(new PaintListener() {
+		
+		public void paintControl(PaintEvent e) {
+			// TODO Auto-generated method stub
+			
+			try {
+	            Rectangle clientArea = canvas.getClientArea();
+				e.gc.setBackground(composite2.getDisplay().getSystemColor(SWT.COLOR_WHITE));
+
+				e.gc.fillRectangle(clientArea.x, clientArea.y, clientArea.width, clientArea.height);
+				
+				Point point = new Point(timeState, Integer.parseInt(light_text.getText()));
+				points[timeState] = point;
+				
+				e.gc.setForeground(composite2.getDisplay().getSystemColor(SWT.COLOR_BLACK));
+				e.gc.drawText("- 200", 0, 320);
+				e.gc.drawText("- 400", 0, 240);
+				e.gc.drawText("- 600", 0, 160);
+				e.gc.drawText("- 800", 0, 80);
+
+				e.gc.setForeground(composite2.getDisplay().getSystemColor(SWT.COLOR_RED));
+				e.gc.drawLine(0, 8, clientArea.width, 8);
+				
+				e.gc.setForeground(composite2.getDisplay().getSystemColor(SWT.COLOR_BLUE));
+				
+				for(int i=0; i<points.length; i++) {
+					if(points[i] != null && i>0 && points[i-1] != null) {
+						e.gc.drawLine(points[i].x*40, 400-(int)(points[i].y*0.4), points[i-1].x*40, 400-(int)(points[i-1].y*0.4));
+					}
+					
+					/*if(points[i] != null) {
+						e.gc.fillOval(points[i].x*40, 400-(int)(points[i].y*0.4), 10,  10);
+					}*/
+				}
+			}
+			catch(Exception err) {
+
+			}
+			
+		}
+	});
+      
+      
       
 	  composite2.layout(true);
   }
