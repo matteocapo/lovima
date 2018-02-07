@@ -4,7 +4,6 @@ import it.univaq.disim.se4s.callbackfunction.*;
 
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttTopic;
 
 public class readFunction{
@@ -126,10 +125,6 @@ public class readFunction{
 		
 		ReadAllMqttCallBack mqttCall = new ReadAllMqttCallBack(client);
 		client.setCallback(mqttCall);
-		
-		//String     message  = id+" readAll";
-	    //MqttMessage     publication = new MqttMessage(message.getBytes());
-	    //topic.publish(publication);
 		
 	}
 	

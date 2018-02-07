@@ -136,8 +136,8 @@ static List<String> old_active_box_list = new ArrayList<String>();
 		final Label label1 = new Label(block, SWT.NONE);
 		final String id = new_active_box_list.get(i);
 		label1.setText("ID: " + id);
-		final Label label2 = new Label(block, SWT.NONE);
-		label2.setText("Animal Type: ");
+		//final Label label2 = new Label(block, SWT.NONE);
+		//label2.setText("Animal Type: ");
 		final Button button = new Button(block,SWT.PUSH);
 		button.setText("See Box Details");
 		//premendo il bottone si apre nel secondo contenitore principale la lista dei dettagli della teca selezionata

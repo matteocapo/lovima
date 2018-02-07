@@ -1,10 +1,6 @@
 package it.univaq.disim.se4s.mqttfunction;
 
 
-import java.sql.SQLException;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -12,7 +8,6 @@ import org.eclipse.paho.client.mqttv3.MqttTopic;
 
 import it.univaq.disim.se4s.callbackfunction.DisconnectedCallBack;
 import it.univaq.disim.se4s.callbackfunction.WhoIsMqttCallBack;
-import it.univaq.disim.se4s.dbquery.DbInterface;
 
 public class ConnectAndDisconnectFunction{
 	

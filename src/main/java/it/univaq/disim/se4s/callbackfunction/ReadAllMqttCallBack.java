@@ -54,7 +54,6 @@ public class ReadAllMqttCallBack implements MqttCallback {
 		catch(Exception e) {
 			DbInterface.deleteOnlineBox(id);
 		}
-		//client.disconnect();
 		
 	}
 
