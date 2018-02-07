@@ -752,6 +752,7 @@ static List<String> old_active_box_list = new ArrayList<String>();
 	  Float minTemp = Float.parseFloat(dict.get("minTemp"));
 	  Float maxHum = Float.parseFloat(dict.get("maxhum"));
 	  Float minHum = Float.parseFloat(dict.get("minhum"));
+	  // valori settati in locale per simulare le condizioni di un caso di incendio
 	  Float tempMax = (float) 40.1;
 	  Float lightMax = (float) 650;
 	  	  
