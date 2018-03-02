@@ -1,0 +1,20 @@
+1- installare la libreria presente a questo indirizzo su arduino: "https://github.com/adafruit/DHT-sensor-library"
+2- caricare il codice presente su "arduinoMQTTMyClient.ino" su arduino (va bene qualsiasi tipo di arduino) e fare i seguenti collegamenti:
+	- Il monitor (schermo oscurante) va collegato al pin 4 digital
+	- il ventilatore va collegato al pin 5 digital
+	- il buzzer passivo va collegato al pin 6
+	- il pin del termometro e sensore di umidità è il 8 digitale
+	- abbiamo un led sul 13 digitale
+	- uno switch va collegato sul pin digitale 2
+	- il fotoresistore va collegato sul pin analogico 0
+
+3- scaricare il broker mosquitto e lanciare il broker mqtt in locale, senza cambiare nulla nelle configurazioni
+4- collegare arduino tramite USB e vedere a che porta COM viene associato, poi cambiare la porta nel file 
+"SerialMqttBridge-v1.0.1\config.properties" 
+5- lanciare il file "SerialMqttBridge-v1.0.1\start_bridge.bat" oppure il jar associato
+6-creare il db MySQL in locale (si può usare xampp), nome db: "se4asdb", il file .sql per mysql è presente sul repository (se4asdb.sql)
+
+7a- caricare il progetto Maven su eclipse, fare update di maven e lanciare il progetto in esecuzione.
+Oppure
+7b- lanciare iTeca.jar
+
