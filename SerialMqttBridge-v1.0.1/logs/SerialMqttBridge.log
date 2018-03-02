@@ -1,0 +1,288 @@
+2018-01-03 00:58:26.275 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-03 00:58:26.279 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-03 00:58:27.539 INFO  org.reflections.Reflections - Reflections took 1238 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-03 00:58:27.540 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-03 00:58:27.564 ERROR d.r.s.SerialMqttBridge - An error occured.
+jssc.SerialPortException: Port name - COM5; Method name - openPort(); Exception type - Port not found.
+	at jssc.SerialPort.openPort(SerialPort.java:167)
+	at de.reitho.serialMqttBridge.serial.SerialHandler.establishSerialConnection(SerialHandler.java:47)
+	at de.reitho.serialMqttBridge.serial.SerialHandler.<init>(SerialHandler.java:26)
+	at de.reitho.serialMqttBridge.serial.SerialHandler.getInstance(SerialHandler.java:35)
+	at de.reitho.serialMqttBridge.SerialMqttBridge.launch(SerialMqttBridge.java:57)
+	at de.reitho.serialMqttBridge.SerialMqttBridge.main(SerialMqttBridge.java:32)
+2018-01-03 00:59:00.407 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-03 00:59:00.410 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-03 00:59:01.331 INFO  org.reflections.Reflections - Reflections took 898 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-03 00:59:01.331 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-03 00:59:01.338 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-03 01:00:01.939 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-03 01:00:01.945 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-03 01:00:02.877 INFO  org.reflections.Reflections - Reflections took 907 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-03 01:00:02.877 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-03 01:00:02.882 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-03 01:00:58.435 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-03 01:00:58.438 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-03 01:00:59.368 INFO  org.reflections.Reflections - Reflections took 907 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-03 01:00:59.368 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-03 01:00:59.374 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-03 01:01:28.065 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-03 01:01:28.068 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-03 01:01:28.967 INFO  org.reflections.Reflections - Reflections took 875 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-03 01:01:28.967 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-03 01:01:28.973 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-03 01:03:55.248 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-03 01:03:55.251 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-03 01:03:56.213 INFO  org.reflections.Reflections - Reflections took 937 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-03 01:03:56.213 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-03 01:03:56.218 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-03 01:06:43.963 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-03 01:06:43.967 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-03 01:06:44.916 INFO  org.reflections.Reflections - Reflections took 923 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-03 01:06:44.916 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-03 01:06:44.921 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-03 01:44:49.089 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-03 01:44:49.093 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-03 01:44:50.115 INFO  org.reflections.Reflections - Reflections took 993 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-03 01:44:50.116 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-03 01:44:50.121 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-03 01:48:39.361 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-03 01:48:39.364 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-03 01:48:40.369 INFO  org.reflections.Reflections - Reflections took 978 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-03 01:48:40.369 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-03 01:48:40.374 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-03 01:54:39.824 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-03 01:54:39.827 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-03 01:54:40.836 INFO  org.reflections.Reflections - Reflections took 981 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-03 01:54:40.836 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-03 01:54:40.841 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-03 01:57:53.863 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-03 01:57:53.866 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-03 01:57:54.804 INFO  org.reflections.Reflections - Reflections took 914 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-03 01:57:54.804 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-03 01:57:54.809 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-03 01:58:31.706 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-03 01:58:31.709 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-03 01:58:32.702 INFO  org.reflections.Reflections - Reflections took 968 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-03 01:58:32.702 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-03 01:58:32.707 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-03 02:00:38.609 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-03 02:00:38.612 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-03 02:00:39.552 INFO  org.reflections.Reflections - Reflections took 915 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-03 02:00:39.552 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-03 02:00:39.559 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-03 02:08:31.262 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-03 02:08:31.265 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-03 02:08:32.176 INFO  org.reflections.Reflections - Reflections took 883 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-03 02:08:32.176 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-03 02:08:32.182 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-03 02:30:53.496 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-03 02:30:53.498 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-03 02:30:54.514 INFO  org.reflections.Reflections - Reflections took 988 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-03 02:30:54.515 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-03 02:30:54.520 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-03 02:34:16.587 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-03 02:34:16.590 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-03 02:34:17.562 INFO  org.reflections.Reflections - Reflections took 948 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-03 02:34:17.563 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-03 02:34:17.569 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-03 02:36:34.642 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-03 02:36:34.646 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-03 02:36:35.619 INFO  org.reflections.Reflections - Reflections took 948 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-03 02:36:35.619 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-03 02:36:35.626 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-06 00:12:43.460 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-06 00:12:43.476 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-06 00:12:44.382 INFO  org.reflections.Reflections - Reflections took 890 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-06 00:12:44.382 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-06 00:12:44.398 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-06 00:14:51.416 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-06 00:14:51.416 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-06 00:14:52.400 INFO  org.reflections.Reflections - Reflections took 954 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-06 00:14:52.400 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-06 00:14:52.400 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-09 18:59:53.549 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-09 18:59:53.605 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-09 18:59:54.919 INFO  org.reflections.Reflections - Reflections took 1253 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-09 18:59:54.919 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-09 18:59:54.937 ERROR d.r.s.SerialMqttBridge - An error occured.
+jssc.SerialPortException: Port name - COM6; Method name - openPort(); Exception type - Port not found.
+	at jssc.SerialPort.openPort(SerialPort.java:167)
+	at de.reitho.serialMqttBridge.serial.SerialHandler.establishSerialConnection(SerialHandler.java:47)
+	at de.reitho.serialMqttBridge.serial.SerialHandler.<init>(SerialHandler.java:26)
+	at de.reitho.serialMqttBridge.serial.SerialHandler.getInstance(SerialHandler.java:35)
+	at de.reitho.serialMqttBridge.SerialMqttBridge.launch(SerialMqttBridge.java:57)
+	at de.reitho.serialMqttBridge.SerialMqttBridge.main(SerialMqttBridge.java:32)
+2018-01-13 17:22:21.470 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-13 17:22:21.532 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-13 17:22:22.814 INFO  org.reflections.Reflections - Reflections took 1250 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-13 17:22:22.829 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-13 17:22:22.845 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-13 17:22:24.986 ERROR d.r.s.SerialMqttBridge - An error occured.
+org.eclipse.paho.client.mqttv3.MqttException: Impossibile effettuare la connessione al server
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:79)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:650)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:70)
+	... 2 common frames omitted
+2018-01-13 17:22:28.102 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-13 17:22:28.102 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-13 17:22:29.102 INFO  org.reflections.Reflections - Reflections took 954 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-13 17:22:29.102 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-13 17:22:29.102 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-13 17:22:31.196 ERROR d.r.s.SerialMqttBridge - An error occured.
+org.eclipse.paho.client.mqttv3.MqttException: Impossibile effettuare la connessione al server
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:79)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:650)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:70)
+	... 2 common frames omitted
+2018-01-13 17:22:39.462 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-13 17:22:39.462 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-13 17:22:40.431 INFO  org.reflections.Reflections - Reflections took 938 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-13 17:22:40.431 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-13 17:22:40.431 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-13 17:24:25.012 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-13 17:24:25.012 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-13 17:24:25.997 INFO  org.reflections.Reflections - Reflections took 969 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-13 17:24:25.997 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-13 17:24:25.997 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-13 18:04:03.583 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-13 18:04:03.587 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-13 18:04:04.537 INFO  org.reflections.Reflections - Reflections took 926 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-13 18:04:04.538 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-13 18:04:04.543 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-13 18:07:05.705 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-13 18:07:05.708 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-13 18:07:06.627 INFO  org.reflections.Reflections - Reflections took 893 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-13 18:07:06.627 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-13 18:07:06.633 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-13 18:12:34.533 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-13 18:12:34.536 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-13 18:12:35.500 INFO  org.reflections.Reflections - Reflections took 938 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-13 18:12:35.500 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-13 18:12:35.507 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-13 18:14:28.100 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-13 18:14:28.103 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-13 18:14:29.067 INFO  org.reflections.Reflections - Reflections took 938 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-13 18:14:29.067 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-13 18:14:29.072 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-13 18:15:18.206 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-13 18:15:18.209 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-13 18:15:19.173 INFO  org.reflections.Reflections - Reflections took 939 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-13 18:15:19.173 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-13 18:15:19.179 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-13 18:16:57.600 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-13 18:16:57.603 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-13 18:16:58.601 INFO  org.reflections.Reflections - Reflections took 973 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-13 18:16:58.601 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-13 18:16:58.607 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-13 18:19:00.062 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-13 18:19:00.065 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-13 18:19:01.053 INFO  org.reflections.Reflections - Reflections took 963 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-13 18:19:01.054 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-13 18:19:01.059 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-13 18:19:52.080 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-13 18:19:52.083 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-13 18:19:53.059 INFO  org.reflections.Reflections - Reflections took 949 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-13 18:19:53.059 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-13 18:19:53.064 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-13 18:26:50.410 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-13 18:26:50.413 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-13 18:26:51.350 INFO  org.reflections.Reflections - Reflections took 912 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-13 18:26:51.350 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-13 18:26:51.356 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-21 19:05:27.050 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-21 19:05:27.081 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-21 19:05:28.081 INFO  org.reflections.Reflections - Reflections took 985 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-21 19:05:28.081 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-21 19:05:28.097 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-21 20:21:09.488 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-21 20:21:09.491 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-21 20:21:10.522 INFO  org.reflections.Reflections - Reflections took 1006 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-21 20:21:10.522 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-21 20:21:10.528 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-21 20:36:17.867 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-21 20:36:17.870 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-21 20:36:18.843 INFO  org.reflections.Reflections - Reflections took 947 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-21 20:36:18.843 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-21 20:36:18.848 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-21 20:46:17.086 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-21 20:46:17.090 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-21 20:46:18.055 INFO  org.reflections.Reflections - Reflections took 939 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-21 20:46:18.055 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-21 20:46:18.061 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-23 02:15:11.801 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-23 02:15:11.848 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-23 02:54:23.231 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-23 02:54:23.234 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-23 02:54:24.259 INFO  org.reflections.Reflections - Reflections took 1000 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-23 02:54:24.260 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-23 02:54:24.278 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-23 03:10:08.383 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-23 03:10:08.386 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-23 03:10:09.376 INFO  org.reflections.Reflections - Reflections took 963 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-23 03:10:09.376 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-23 03:10:09.381 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-23 03:23:31.114 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-23 03:23:31.118 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-23 03:23:32.111 INFO  org.reflections.Reflections - Reflections took 965 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-23 03:23:32.112 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-23 03:23:32.117 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-23 03:27:04.643 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-23 03:27:04.646 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-23 03:27:05.642 INFO  org.reflections.Reflections - Reflections took 969 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-23 03:27:05.642 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-23 03:27:05.648 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-23 03:28:58.723 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-23 03:28:58.727 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-23 03:28:59.738 INFO  org.reflections.Reflections - Reflections took 984 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-23 03:28:59.738 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-23 03:28:59.744 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-23 03:53:08.034 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-23 03:53:08.039 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-23 03:53:09.050 INFO  org.reflections.Reflections - Reflections took 986 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-23 03:53:09.050 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-23 03:53:09.055 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-01-23 04:03:26.750 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-01-23 04:03:26.753 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-01-23 04:03:27.772 INFO  org.reflections.Reflections - Reflections took 991 ms to scan 13 urls, producing 2015 keys and 11257 values 
+2018-01-23 04:03:27.772 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-01-23 04:03:27.778 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-02-07 15:28:48.447 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-02-07 15:28:48.450 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-02-07 15:28:49.549 INFO  org.reflections.Reflections - Reflections took 1071 ms to scan 13 urls, producing 2015 keys and 11261 values 
+2018-02-07 15:28:49.549 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-02-07 15:28:49.567 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-02-07 17:31:11.344 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-02-07 17:31:11.344 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-02-07 17:31:12.297 INFO  org.reflections.Reflections - Reflections took 922 ms to scan 13 urls, producing 2015 keys and 11261 values 
+2018-02-07 17:31:12.297 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-02-07 17:31:12.297 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-02-07 22:20:54.808 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-02-07 22:20:54.808 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-02-07 22:20:56.136 INFO  org.reflections.Reflections - Reflections took 1250 ms to scan 13 urls, producing 2015 keys and 11261 values 
+2018-02-07 22:20:56.136 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-02-07 22:20:56.152 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
+2018-02-08 12:08:15.079 INFO  d.r.s.SerialMqttBridge - Reading configuration file
+2018-02-08 12:08:15.146 INFO  d.r.s.SerialMqttBridge - Searching for plugins
+2018-02-08 12:08:17.134 INFO  org.reflections.Reflections - Reflections took 1910 ms to scan 13 urls, producing 2015 keys and 11261 values 
+2018-02-08 12:08:17.135 INFO  d.r.s.SerialMqttBridge - Creating serial handler and establish connection
+2018-02-08 12:08:17.167 INFO  d.r.s.SerialMqttBridge - Creating MQTT handler and establish connection
